@@ -88,19 +88,19 @@
   <!-- Feature pills -->
   <g transform="translate(110, 235)">
     <g class="pill" transform="translate(0, 0)">
-      <rect x="0" y="0" width="135" height="32" rx="16" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(0, 212, 255, 0.3)" stroke-width="1" rx="16"/>
+      <rect x="0" y="0" width="135" height="32" rx="16" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(0, 212, 255, 0.3)" stroke-width="1"/>
       <text x="67.5" y="21" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#00D4FF" text-anchor="middle">CDP Injection</text>
     </g>
     <g class="pill" transform="translate(145, 0)">
-      <rect x="0" y="0" width="135" height="32" rx="16" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(124, 58, 237, 0.3)" stroke-width="1" rx="16"/>
+      <rect x="0" y="0" width="135" height="32" rx="16" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(124, 58, 237, 0.3)" stroke-width="1"/>
       <text x="67.5" y="21" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#A78BFA" text-anchor="middle">Context Isolation</text>
     </g>
     <g class="pill" transform="translate(290, 0)">
-      <rect x="0" y="0" width="135" height="32" rx="16" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1" rx="16"/>
+      <rect x="0" y="0" width="135" height="32" rx="16" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1"/>
       <text x="67.5" y="21" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#FCD34D" text-anchor="middle">Razorpay Native</text>
     </g>
     <g class="pill" transform="translate(435, 0)">
-      <rect x="0" y="0" width="135" height="32" rx="16" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(34, 197, 94, 0.3)" stroke-width="1" rx="16"/>
+      <rect x="0" y="0" width="135" height="32" rx="16" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(34, 197, 94, 0.3)" stroke-width="1"/>
       <text x="67.5" y="21" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#4ADE80" text-anchor="middle">PCI DSS 3.3</text>
     </g>
   </g>

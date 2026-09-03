@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RT-1 Attack Payload",
+  "type": "object",
+  "required": ["id", "category", "layer_target", "vendor", "amount", "reasoning", "page_url", "allowed_categories", "expected", "variant_tags"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string", "pattern": "^[A-K]-\\d{4}$"},
+    "category": {"type": "string", "enum": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"]},
+    "layer_target": {"type": "string", "enum": ["layer1", "layer2", "hybrid", "full_mcp", "toctou", "any"]},
+    "vendor": {"type": "string", "maxLength": 200},
+    "amount": {"type": "number", "exclusiveMinimum": 0},
+    "reasoning": {"type": "string", "maxLength": 2000},
+    "page_url": {"type": ["string", "null"]},
+    "allowed_categories": {"type": "array", "items": {"type": "string"}},
+    "expected": {"type": "string", "enum": ["block", "approve"]},
+    "variant_tags": {"type": "array", "items": {"type": "string"}},
+    "page_content_fixture": {"type": "string"},
+    "rationale": {"type": "string"}
+  }
+}
+

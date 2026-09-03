@@ -1,0 +1,29 @@
+{
+  "name": "@akshay/mcp-server-hangpay",
+  "version": "0.5.10",
+  "description": "MCP-convention alias for hangpay. Runtime security for AI agent commerce — CLI + MCP server.",
+  "main": "index.js",
+  "bin": {
+    "hangpay": "bin/hangpay.js",
+    "hangpay-launch": "bin/hangpay-launch.js",
+    "hangpay-init-vault": "bin/hangpay-init-vault.js",
+    "hangpay-unlock": "bin/hangpay-unlock.js"
+  },
+  "keywords": [
+    "mcp", "mcp-server", "model-context-protocol", "ai", "agent",
+    "payment", "guardrail", "security"
+  ],
+  "author": "Akshay <akshay@hangpay.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshay/HangPay.git",
+    "directory": "scoped-mirror"
+  },
+  "homepage": "https://github.com/akshay/HangPay#readme",
+  "bugs": { "url": "https://github.com/akshay/HangPay/issues" },
+  "engines": { "node": ">=18.0.0" },
+  "dependencies": { "hangpay": "0.5.10" },
+  "files": [ "index.js", "bin/", "README.md", "LICENSE" ],
+  "publishConfig": { "access": "public" }
+}

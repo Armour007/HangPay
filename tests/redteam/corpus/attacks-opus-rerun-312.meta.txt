@@ -1,0 +1,28 @@
+attacks-opus-rerun-312.json — F5-Opus-Pro-Rerun corpus
+
+Source (sha256-pinned):
+  tests/redteam/runs/adaptive/2026-04-29T18-14-36-899Z-gemini_gemini-3.1-pro-preview.opus-partial-snapshot.jsonl
+  sha256: b8b40e0d509b0e09a74101bc28dd3ec4558cad9c59ae9d093294817538bb2394
+
+Filter:
+  Exclude payload_ids where the killed-Opus snapshot contains a row
+  with zero credit_balance steps ("PURE" rows; the data is
+  reusable as-is and the rerun would only burn calls).
+  Include all other attack-only payload_ids:
+    - rows with >=1 credit_balance step ("CONTAMINATED")
+    - payload_ids the killed run never reached.
+
+Counts:
+  attack-only corpus:        469
+  killed-snapshot rows:      224
+  PURE in snapshot:          157
+  CONTAMINATED in snapshot:  67
+  never attempted:           245
+  rerun corpus size:         312
+
+Sanity:
+  rerun = attack_only - PURE = 469 - 157 = 312
+
+Used by: F5-Opus-Pro-Rerun (commit-ledger.md).
+Generated: 2026-04-29 by eng-redteam-runner.
+

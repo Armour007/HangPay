@@ -1,0 +1,22 @@
+# Python dependencies for the redteam evaluation pipeline.
+# Use `pip install -r tests/redteam/requirements.txt` from a fresh venv
+# (Python >= 3.10 — the pipeline uses `from __future__ import annotations`
+# + 3.10+ type-hint syntax via `tuple[X, Y]` style).
+#
+# Versions are pinned to the minor for reproducibility while leaving
+# patch flexibility. The actual paper-table-generating runs used these
+# minor versions or compatible later patches.
+#
+# All dependencies are pure-Python or have manylinux/macOS wheels.
+
+numpy>=1.26,<3.0
+scipy>=1.11,<2.0
+scikit-learn>=1.3,<2.0
+matplotlib>=3.7,<4.0
+
+# stdlib-only scripts (compute-cross-judge-iaa, build-*-corpus, merge-*,
+# scan-rlhf-compliance, compute-ensemble-upper-bound, build-opus-*-corpus,
+# verify-paper-numbers helpers) need only the standard library; the above
+# numpy/scipy/sklearn dependencies are required by compute-ci.py and
+# compute-bypassk-driftcorrected.py for bootstrap CI + McNemar testing.
+

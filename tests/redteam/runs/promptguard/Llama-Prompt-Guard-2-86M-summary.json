@@ -1,0 +1,75 @@
+{
+  "model": "meta-llama/Llama-Prompt-Guard-2-86M",
+  "corpus_size": 585,
+  "attack_count": 469,
+  "benign_count": 116,
+  "per_category": {
+    "A": {
+      "det_rate": 10.0,
+      "fp_rate": 0.0,
+      "n_attack": 50,
+      "n_detected": 5
+    },
+    "B": {
+      "det_rate": 0.0,
+      "fp_rate": 0.0,
+      "n_attack": 60,
+      "n_detected": 0
+    },
+    "C": {
+      "det_rate": 0.0,
+      "fp_rate": 0.0,
+      "n_attack": 45,
+      "n_detected": 0
+    },
+    "D": {
+      "det_rate": 9.090909090909092,
+      "fp_rate": 0.0,
+      "n_attack": 55,
+      "n_detected": 5
+    },
+    "E": {
+      "det_rate": 0.0,
+      "fp_rate": 0.0,
+      "n_attack": 45,
+      "n_detected": 0
+    },
+    "F": {
+      "det_rate": 0.0,
+      "fp_rate": 0.0,
+      "n_attack": 35,
+      "n_detected": 0
+    },
+    "G": {
+      "det_rate": 0.0,
+      "fp_rate": 0.0,
+      "n_attack": 50,
+      "n_detected": 0
+    },
+    "H": {
+      "det_rate": 0.0,
+      "fp_rate": 0.0,
+      "n_attack": 35,
+      "n_detected": 0
+    },
+    "I": {
+      "det_rate": 0.0,
+      "fp_rate": 0.0,
+      "n_attack": 29,
+      "n_detected": 0
+    },
+    "J": {
+      "det_rate": 0.0,
+      "fp_rate": 0.0,
+      "n_attack": 30,
+      "n_detected": 0
+    },
+    "K": {
+      "det_rate": 0.0,
+      "fp_rate": 0.0,
+      "n_attack": 35,
+      "n_detected": 0
+    }
+  },
+  "overall_detection_rate": 2.1321961620469083
+}

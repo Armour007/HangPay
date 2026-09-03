@@ -1,0 +1,6 @@
+[iaa] sampling corpus
+[iaa] sampled 218 payloads
+[claude] launching 218 calls (concurrency=5)
+[claude] 25/218 done (failed=0, elapsed=63.3s)
+[claude] 50/218 done (failed=1, elapsed=104.2s)
+[claude] 75/218 done (failed=1, elapsed=154.6s)

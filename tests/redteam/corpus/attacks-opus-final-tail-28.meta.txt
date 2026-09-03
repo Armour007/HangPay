@@ -1,0 +1,22 @@
+attacks-opus-final-tail-28.json — F5-Opus-Pro-FinalTail corpus
+
+Sources (sha256-pinned):
+  snapshot 1 (initial salvage):  tests/redteam/runs/adaptive/2026-04-29T18-14-36-899Z-gemini_gemini-3.1-pro-preview.opus-partial-snapshot.jsonl
+    sha256: b8b40e0d509b0e09a74101bc28dd3ec4558cad9c59ae9d093294817538bb2394
+    rows: 224  PURE: 157  CONTAMINATED: 67
+  snapshot 2 (rerun):            tests/redteam/runs/adaptive/2026-04-29T18-58-29-824Z-gemini_gemini-3.1-pro-preview.opus-rerun-snapshot.jsonl
+    sha256: 18f76e2ca9838c2888486f6f524f30d1cb48e519e6bb34ce372414924d85d964
+    rows: 284  PURE: 284  CONTAMINATED: 0
+
+Filter:
+  Include attack-only payload_ids that appear in NEITHER snapshot's PURE set.
+
+Counts:
+  attack-only corpus:    469
+  union PURE coverage:   441
+  final tail:            28
+  category distribution: {'K': 28}
+
+Used by: F5-Opus-Pro-FinalTail (commit-ledger.md).
+Generated: 2026-04-29 by eng-redteam-runner.
+

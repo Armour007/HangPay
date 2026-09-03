@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+
+  # PR-only smoke build with no secrets — validates that build.rs + lib.rs's
+  # include!(...) path compiles cleanly in OSS mode (POP_VAULT_COMPILED_SALT
+  # unset → build.rs emits None/None). The hardened release build runs in
+  # publish.yml's `build-native-release` job on v* tags (F10).
+  build-native-smoke:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: cargo check (OSS mode, no salt)
+        run: cargo check --manifest-path native/Cargo.toml

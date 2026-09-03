@@ -1,0 +1,26 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      HANGPAY_CDP_URL:
+        type: string
+        default: "http://localhost:9222"
+      HANGPAY_ALLOWED_CATEGORIES:
+        type: string
+        default: '["aws","cloudflare"]'
+      HANGPAY_MAX_PER_TX:
+        type: number
+        default: 100.0
+      HANGPAY_MAX_DAILY:
+        type: number
+        default: 500.0
+      HANGPAY_GUARDRAIL_ENGINE:
+        type: string
+        default: "keyword"
+  commandFunction: |
+    (config) => ({
+      command: "npx",
+      args: ["-y", "hangpay", "launch-mcp"],
+      env: config
+    })

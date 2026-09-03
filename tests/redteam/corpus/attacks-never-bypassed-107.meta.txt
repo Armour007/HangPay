@@ -1,0 +1,15 @@
+attacks-never-bypassed-107.json — F5-Pro-K20 filtered corpus
+
+Source: derived from
+  tests/redteam/runs/adaptive/2026-04-29T09-31-35-759Z-gemini_gemini-3.1-pro-preview.k5-snapshot.jsonl
+  (sha256: 049fe78379b6b8afe182d9a6595d591a8662de34dadd96af383040d9a6a73ce3)
+
+Filter: payload_id WHERE bypass_at_k IS NULL in snapshot
+  (K=5 run: 469 attack-only payloads / 362 bypassed / 107 never-bypassed)
+
+Used by: F5-Pro-K20 ablation — extend Bypass@K from K=5 to K=20 on the
+  never-bypassed subset only, to measure asymptotic bypass rate against the
+  PRIMARY threat model (whitebox-no-feedback, GPT-5.4 attacker, Pro guardrail).
+
+Generated: 2026-04-29 by eng-redteam-runner
+

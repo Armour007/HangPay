@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vault - Pop Pay Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>THE VAULT <span class="subtitle">// POP PAY TERMINAL</span></h1>
+            <button id="refresh-btn" class="btn">REFRESH_DATA</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="metrics">
+            <div class="card">
+                <h3>TODAY_SPENDING</h3>
+                <p id="today-spending" class="value">$0.00</p>
+            </div>
+            <div class="card">
+                <h3>REMAINING_BUDGET</h3>
+                <p id="remaining-budget" class="value">$0.00</p>
+            </div>
+            <div class="card">
+                <h3>UTILIZATION</h3>
+                <p id="utilization-pct" class="value">0%</p>
+                <div class="progress-bar">
+                    <div id="utilization-fill" class="progress-fill"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="settings card">
+            <h3>BUDGET_SETTINGS</h3>
+            <div class="input-group">
+                <label for="max-daily-budget">MAX_DAILY_BUDGET ($):</label>
+                <input type="number" id="max-daily-budget" value="500" step="10">
+                <button id="save-settings" class="btn btn-small">UPDATE</button>
+            </div>
+        </section>
+
+        <section class="seals">
+            <h3>ISSUED_SEALS</h3>
+            <div class="table-container">
+                <table id="seals-table">
+                    <thead>
+                        <tr>
+                            <th data-sort="seal_id">SEAL_ID</th>
+                            <th data-sort="amount">AMOUNT</th>
+                            <th data-sort="vendor">VENDOR</th>
+                            <th data-sort="status">STATUS</th>
+                            <th data-sort="masked_card">CARD_MASK</th>
+                            <th data-sort="timestamp">TIMESTAMP</th>
+                        </tr>
+                    </thead>
+                    <tbody id="seals-body">
+                        <!-- Data injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="rejected">
+            <h3>REJECTION_LOG</h3>
+            <div class="table-container">
+                <table id="rejected-table">
+                    <thead>
+                        <tr>
+                            <th>SEAL_ID</th>
+                            <th>AMOUNT</th>
+                            <th>VENDOR</th>
+                            <th>REASON</th>
+                            <th>TIMESTAMP</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rejected-body">
+                        <!-- Data injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="audit-log">
+            <h3>AUDIT_LOG</h3>
+            <div class="table-container">
+                <table id="audit-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>EVENT_TYPE</th>
+                            <th>VENDOR</th>
+                            <th>OUTCOME</th>
+                            <th>REASONING</th>
+                            <th>REASON</th>
+                            <th>TIMESTAMP</th>
+                        </tr>
+                    </thead>
+                    <tbody id="audit-body">
+                        <!-- Data injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

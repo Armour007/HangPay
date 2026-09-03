@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "hangpay": {
+      "command": "npx",
+      "args": ["-y", "hangpay", "launch-mcp"],
+      "env": {
+        "HANGPAY_CDP_URL": "http://localhost:9222",
+        "HANGPAY_ALLOWED_CATEGORIES": "[\"aws\",\"cloudflare\"]",
+        "HANGPAY_MAX_PER_TX": "100.0",
+        "HANGPAY_MAX_DAILY": "500.0",
+        "HANGPAY_GUARDRAIL_ENGINE": "keyword"
+      }
+    }
+  }
+}

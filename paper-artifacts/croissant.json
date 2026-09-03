@@ -1,0 +1,275 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "prov": "http://www.w3.org/ns/prov#",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "name": "hangpay Guardrail Benchmark",
+  "alternateName": ["hangpay-redteam-corpus", "RT-1"],
+  "description": "A 585-payload red-team benchmark (469 attack + 116 benign scenarios across an 11-category taxonomy) for evaluating LLM-based payment guardrail systems. The corpus pairs structured transaction fields (vendor, amount, agent reasoning, allowed categories) with adversarial variants spanning Unicode homoglyphs, base64-encoded injections, prompt-injection directives, amount manipulation, category mismatch, and benign distractors. Released alongside an evaluation harness and Bypass@K adaptive attacker for reproducible measurement of guardrail robustness against single-system-under-test (hangpay) for the NeurIPS 2026 Datasets and Benchmarks (E&D) Track.",
+  "version": "1.0.0",
+  "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "url": "https://github.com/akshay/hangpay",
+  "citeAs": "@inproceedings{poppay2026,\n  title={Bypassing Single-System LLM Payment Guardrails: A 585-Payload Red-Team Benchmark with Adaptive Bypass@K Methodology},\n  author={Anonymous Author(s)},\n  booktitle={Submitted to the 39th Conference on Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track},\n  year={2026}\n}",
+  "creator": {
+    "@type": "sc:Person",
+    "name": "Anonymous Author(s)"
+  },
+  "publisher": {
+    "@type": "sc:Organization",
+    "name": "Anonymous (deferred for double-blind review)"
+  },
+  "datePublished": "2026-05-04",
+  "keywords": [
+    "LLM guardrails",
+    "payment fraud",
+    "adaptive attacks",
+    "Bypass@K",
+    "red team",
+    "prompt injection",
+    "agent security",
+    "benchmark"
+  ],
+  "inLanguage": "en",
+  "isLiveDataset": false,
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "attacks.json",
+      "name": "attacks.json",
+      "description": "Full 585-payload corpus (469 attack + 116 benign scenarios). Each record is a JSON object with id, category (A-K), layer_target, vendor, amount, reasoning, page_url, allowed_categories, expected verdict (block|approve), variant_tags, and rationale.",
+      "contentUrl": "https://raw.githubusercontent.com/akshay/hangpay/main/tests/redteam/corpus/attacks.json",
+      "encodingFormat": "application/json",
+      "sha256": "c3892e15c4f9f9b1f837d7316b282edb2952d78c8e0bc89e8a409c8c4532d0b9",
+      "contentSize": "283978 B"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "schema.json",
+      "name": "schema.json",
+      "description": "JSON Schema (draft-07) defining the structural contract for each corpus record.",
+      "contentUrl": "https://raw.githubusercontent.com/akshay/hangpay/main/tests/redteam/corpus/schema.json",
+      "encodingFormat": "application/schema+json",
+      "sha256": "a44623f87ffdea975faf2f07456ebbb61f462460e4e3e4132a120b29e2b40dab"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "generation-md",
+      "name": "GENERATION.md",
+      "description": "Human-readable generation protocol: LLM-assisted template expansion via Gemini CLI followed by 100% manual single-author review and curation.",
+      "contentUrl": "https://raw.githubusercontent.com/akshay/hangpay/main/tests/redteam/corpus/GENERATION.md",
+      "encodingFormat": "text/markdown",
+      "sha256": "d7f1ab4d7dba59b7b9f6d081e8dee27dde2412016fb1ac4ca6723d6c89a14943"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "payloads",
+      "name": "payloads",
+      "description": "One record per red-team payload. 469 attack records (expected=block) + 116 benign records (expected=approve), spanning 11 categories (A-K) including prompt-injection (A), Unicode homoglyph (B), base64/encoding (C), amount manipulation (E), category mismatch (D), and benign-distractor (K).",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "payloads/payload_id",
+          "name": "payload_id",
+          "description": "Unique payload identifier matching pattern ^[A-K]-\\d{4}$ (category letter + 4-digit sequence).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "attacks.json"},
+            "extract": {"jsonPath": "$[*].id"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "payloads/category",
+          "name": "category",
+          "description": "11-category taxonomy letter (A-K). Categories are derived from the hangpay system architecture (Layer 1 regex, Layer 2 LLM, hybrid, MCP-side, TOCTOU) rather than from a generic threat-modeling framework; see paper §sec:corpus.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "attacks.json"},
+            "extract": {"jsonPath": "$[*].category"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "payloads/layer_target",
+          "name": "layer_target",
+          "description": "Targeted defense layer: layer1 | layer2 | hybrid | full_mcp | toctou | any.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "attacks.json"},
+            "extract": {"jsonPath": "$[*].layer_target"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "payloads/vendor",
+          "name": "vendor",
+          "description": "Merchant / payee name presented to the guardrail (e.g., AWS, GitHub, OpenAI). Synthetic — no real customer data.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "attacks.json"},
+            "extract": {"jsonPath": "$[*].vendor"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "payloads/amount",
+          "name": "amount",
+          "description": "Transaction amount in USD (positive number; decimal).",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {"@id": "attacks.json"},
+            "extract": {"jsonPath": "$[*].amount"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "payloads/reasoning",
+          "name": "reasoning",
+          "description": "Agent chain-of-thought / justification string presented to the guardrail. May contain adversarial content per the variant_tags field.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "attacks.json"},
+            "extract": {"jsonPath": "$[*].reasoning"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "payloads/page_url",
+          "name": "page_url",
+          "description": "Synthetic page URL associated with the transaction (nullable). Synthetic — no real domain access.",
+          "dataType": "sc:URL",
+          "source": {
+            "fileObject": {"@id": "attacks.json"},
+            "extract": {"jsonPath": "$[*].page_url"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "payloads/allowed_categories",
+          "name": "allowed_categories",
+          "description": "User-configured allowlist of vendor categories for this transaction context.",
+          "dataType": "sc:Text",
+          "repeated": true,
+          "source": {
+            "fileObject": {"@id": "attacks.json"},
+            "extract": {"jsonPath": "$[*].allowed_categories"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "payloads/expected_verdict",
+          "name": "expected_verdict",
+          "description": "Ground-truth label: 'block' (attack) or 'approve' (benign). Single-author labeling; LLM-as-annotator inter-rater reliability study (Fleiss kappa = 0.749 / 0.814) reported in paper §App app:iaa as a proxy for human IRR.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "attacks.json"},
+            "extract": {"jsonPath": "$[*].expected"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "payloads/variant_tags",
+          "name": "variant_tags",
+          "description": "Tags describing the adversarial variant(s) applied (e.g., zero_width, unicode_homoglyph, base64, injection, amount_manipulation).",
+          "dataType": "sc:Text",
+          "repeated": true,
+          "source": {
+            "fileObject": {"@id": "attacks.json"},
+            "extract": {"jsonPath": "$[*].variant_tags"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "payloads/rationale",
+          "name": "rationale",
+          "description": "Human-authored explanation of the attack mechanism and which guardrail layer is expected to catch it (free-text, optional).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "attacks.json"},
+            "extract": {"jsonPath": "$[*].rationale"}
+          }
+        }
+      ]
+    }
+  ],
+  "rai:dataCollection": "Template-generated by a single author using Gemini CLI for LLM-assisted payload variety expansion (Unicode homoglyph variants, base64 encodings, prompt-injection rephrasings), followed by 100% manual single-author review and curation. No human subjects; no PII; no scraped web data; no real customer transactions; no real payment credentials. Corpus targets the authors' own open-source hangpay guardrail system only (no third-party production attacks).",
+  "rai:dataCollectionType": "Synthetic, LLM-assisted template expansion with manual curation",
+  "rai:dataCollectionTimeframe": "2026-03 to 2026-04",
+  "rai:dataPreprocessing": "API-key-shaped substrings are scrubbed before persistence on all released artifacts. Records are validated against schema.json (JSON Schema draft-07) before commit. No deduplication is applied beyond the manual review pass; equal-weight sampling across the 11-category taxonomy is intentional and disclosed as a limitation (paper §sec:limitations).",
+  "rai:dataAnnotation": "Single-author labeling (expected_verdict = block | approve). To proxy for human inter-rater reliability under a single-author labeling regime, three frontier LLMs are run as independent annotators on the same labels and Fleiss kappa is reported (kappa = 0.749 across all three; kappa = 0.814 on the cleaned subset); see paper §App app:iaa. No paid crowdworkers and no human subjects were involved.",
+  "rai:dataAnnotationProtocol": "Each payload is labeled by the single author at authoring time based on the attack mechanism described in the rationale field; the LLM-as-annotator IRR study runs post-hoc on the same expected verdict.",
+  "rai:dataAnnotatorDemographics": "Not applicable — no human annotators beyond the single author; LLM annotators are the three frontier models documented in paper §App app:iaa.",
+  "rai:dataBiases": "The 11-category taxonomy is system-derived (grounded in hangpay's specific Layer-1 regex / Layer-2 LLM / hybrid / MCP / TOCTOU architecture) rather than threat-framework-derived (e.g., MITRE ATLAS, OWASP LLM Top 10). Transferability of bypass rates to other guardrail architectures or to real-world payment fraud distributions is not guaranteed; see paper §sec:limitations (single-system-under-test, limited attack taxonomy, equal-weight payloads). Vendor names skew toward US-based developer-tool merchants (AWS, GitHub, OpenAI, GCP) reflecting the author's domain familiarity rather than global merchant frequency.",
+  "rai:personalSensitiveInformation": "None. No PII, no real customer data, no real payment credentials, no real card numbers, no biometric data, no health data, no minors. All vendor names refer to publicly known companies in their commercial-merchant capacity (no individuals). API-key-shaped substrings are scrubbed from released run artifacts.",
+  "rai:dataSocialImpact": "Dual-use: the corpus enables both defender-side training/evaluation and attacker-side payload development against LLM-based payment guardrails. Mitigation strategy (paper §Broader Impact and Responsible Disclosure): (i) 90-day staged-release policy for harness updates that materially expand attacker capability (multi-turn dialogue, fork-and-vote ensembling, context-stuffing rewrites), aligned with Google Project Zero cadence; (ii) v2 commitment to a 100-payload PRIVATE canary corpus (GSM-1k / MMLU-Pro pattern) under Zenodo-arbitrated third-party submission for longitudinal contamination resistance; (iii) responsible-disclosure framing for any future third-party guardrail findings (90-day coordinated disclosure window).",
+  "rai:dataIntendedUses": "Evaluating the robustness of LLM-based payment guardrail systems against adversarial inputs; benchmark-methodology research (Bypass@K, hybrid-defense ablation, prompt-ablation studies); reproduction of paper headline numbers via the released harness and gen-tables.py. NOT intended for direct production fraud-detection deployment, NOT a substitute for transaction-graph or behavioral-anomaly fraud signals, and NOT a comprehensive coverage of all real-world payment-fraud vectors.",
+  "rai:dataLimitations": "Single-system-under-test (hangpay only); single-author labeling proxied by LLM-as-annotator IRR; equal-weight payload sampling across categories (does not reflect real-world frequency); no transaction-context or graph-history features; offline-replica attacks not directly evaluated (see paper §sec:limitations for the full enumeration of 14 limitations).",
+  "rai:dataReleaseAndMaintenance": "Versioned corpus with documented addition / retirement criteria in GENERATION.md and the paper's Run Manifest (paper §App app:manifest). v1.0 (this release) pins corpus SHA-256 c3892e15c4f9f9b1f837d7316b282edb2952d78c8e0bc89e8a409c8c4532d0b9 and harness engine version v0.5.10 (commit b890725). Persistent identifier: an anonymized Zenodo deposit is planned for camera-ready (DOI deferred for double-blind review per paper §Data Availability). v2 will additionally include a 100-payload PRIVATE canary corpus under third-party arbitration for longitudinal contamination resistance.",
+  "rai:dataUseCases": "(1) Evaluating new LLM guardrail prompts or models; (2) Reproducing the paper's hybrid-defense, prompt-ablation, and Bypass@K results; (3) Methodology research on adaptive-attack metrics for LLM safety; (4) Ablation studies on guardrail prompt design.",
+  "rai:dataLicenseClarity": "Corpus released under CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/); evaluation harness released under MIT. License declaration in paper §License. Both licenses are OSI/Creative-Commons recognized; no field-of-use restrictions beyond ShareAlike for the corpus.",
+  "rai:hasSyntheticData": true,
+  "prov:wasDerivedFrom": [
+    {
+      "@type": "prov:Entity",
+      "name": "Hand-authored seed templates (~50 seeds across 11 attack categories A-K)",
+      "description": "Single-author seed templates encoding each category's defining vulnerability surface (4-8 seeds per category). Not derived from any external dataset."
+    },
+    {
+      "@type": "prov:Entity",
+      "name": "Gemini CLI (gemini-3.1-pro-preview)",
+      "description": "LLM-assisted variation generator used to expand each seed into 8-15 surface variants via a fixed variation prompt that varied surface attributes (vendor name, currency, amount magnitude, reasoning rephrasing) while pinning the underlying attack mechanism. The variation prompt and rejection criteria are documented in tests/redteam/corpus/GENERATION.md."
+    }
+  ],
+  "prov:wasGeneratedBy": {
+    "@type": "prov:Activity",
+    "name": "Three-stage corpus generation with diversity audit",
+    "description": "Stage 1 — single-author hand-authored 4-8 seed templates per attack category (~50 seeds total). Stage 2 — Gemini CLI expanded each seed into 8-15 surface variants via fixed variation prompt while pinning the underlying attack mechanism. Stage 3 — single-author manual curation: every generated variant was hand-reviewed; variants that drifted from the seed mechanism, collapsed onto an existing variant by paraphrase, or introduced confounding surfaces from a different category were rejected. No paid crowdworkers, no human subjects, no scraped web data, no real customer transactions. Diversity audit applied two controls: (a) per-template variation cap of 15 (no single seed dominates a category); (b) semantic-clustering audit via k-means at k=|seeds| within each category, rejecting any corpus state where a single cluster contained >40% of the variants under that category. Final corpus locked at 585 payloads (469 attack + 116 benign) and pinned by SHA-256 in tests/redteam/runs/MANIFEST.sha256."
+  }
+}
+

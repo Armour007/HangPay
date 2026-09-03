@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.akshay/hangpay",
+  "description": "Runtime security for AI agent commerce. CLI + MCP server blocks hallucinated purchases.",
+  "repository": {
+    "url": "https://github.com/akshay/HangPay",
+    "source": "github"
+  },
+  "version": "0.5.10",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "hangpay",
+      "version": "0.5.10",
+      "transport": { "type": "stdio" },
+      "runtimeArguments": [
+        { "type": "positional", "value": "launch-mcp", "isRequired": true }
+      ],
+      "environmentVariables": [
+        { "name": "HANGPAY_CDP_URL", "description": "Chrome DevTools Protocol endpoint for credential injection (default: http://localhost:9222)", "isRequired": false, "format": "string", "isSecret": false, "default": "http://localhost:9222" },
+        { "name": "HANGPAY_ALLOWED_CATEGORIES", "description": "JSON array of allowed vendor categories (e.g. '[\"aws\",\"cloudflare\"]')", "isRequired": false, "format": "string", "isSecret": false, "default": "[\"aws\",\"cloudflare\"]" },
+        { "name": "HANGPAY_MAX_PER_TX", "description": "Per-transaction spending limit in USD", "isRequired": false, "format": "string", "isSecret": false, "default": "100.0" },
+        { "name": "HANGPAY_MAX_DAILY", "description": "Daily spending limit in USD", "isRequired": false, "format": "string", "isSecret": false, "default": "500.0" },
+        { "name": "HANGPAY_GUARDRAIL_ENGINE", "description": "Guardrail engine: 'keyword' (offline, default) or 'llm' (requires API key)", "isRequired": false, "format": "string", "isSecret": false, "default": "keyword" }
+      ]
+    }
+  ]
+}

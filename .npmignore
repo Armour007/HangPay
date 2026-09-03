@@ -1,0 +1,43 @@
+# Source (dist/ is published, not src/)
+src/
+tests/
+native/src/
+native/Cargo.toml
+native/Cargo.lock
+native/target/
+
+# Dev config
+tsconfig.json
+vitest.config.ts
+.eslintrc*
+eslint.config.*
+.prettierrc*
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Git
+.git/
+.github/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# CI/CD
+.travis.yml
+.circleci/
+Makefile
+
+# Misc
+*.tgz
+*.log
+.env
+.env.*
+.DS_Store
+CLAUDE.md

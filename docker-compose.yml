@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  hangpay:
+    build: .
+    container_name: hangpay-mcp
+    restart: unless-stopped
+    environment:
+      # Spending policy
+      HANGPAY_ALLOWED_CATEGORIES: '["aws", "cloudflare", "openai", "github"]'
+      HANGPAY_MAX_PER_TX: "100.0"
+      HANGPAY_MAX_DAILY: "500.0"
+      HANGPAY_BLOCK_LOOPS: "true"
+      # Guardrail engine: keyword (default) or llm
+      # HANGPAY_GUARDRAIL_ENGINE: keyword
+      # HANGPAY_LLM_API_KEY: ""
+      # HANGPAY_LLM_MODEL: gpt-4o-mini
+      # Stripe issuing (optional — leave unset for BYOC/mock mode)
+      # HANGPAY_STRIPE_KEY: ""
+      # CDP injection
+      HANGPAY_CDP_URL: "http://chromium:9222"
+      HANGPAY_AUTO_INJECT: "true"
+    volumes:
+      # Mount vault from host (encrypted at rest)
+      - ${HOME}/.config/hangpay:/home/hangpayuser/.config/hangpay:ro
+      # State DB persistence
+      - hangpay-state:/app/data
+    stdin_open: true
+    tty: false
+
+  # Headless Chromium for CDP injection
+  chromium:
+    image: zenika/alpine-chrome:latest
+    container_name: hangpay-chromium
+    restart: unless-stopped
+    command:
+      - "--no-sandbox"
+      - "--disable-gpu"
+      - "--disable-dev-shm-usage"
+      - "--remote-debugging-address=0.0.0.0"
+      - "--remote-debugging-port=9222"
+    ports:
+      - "9222:9222"
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+
+volumes:
+  hangpay-state:

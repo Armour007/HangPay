@@ -1,0 +1,11 @@
+attacks-flash-gpt-never-at-k5-195.json — F5-FlashGPT-K20Tail filtered corpus
+
+Source (sha256-pinned):
+  tests/redteam/runs/adaptive/2026-04-28T04-06-24-307Z-gemini_gemini-2.5-flash.k5-snapshot.jsonl
+  sha256: 968b59cbd3c36f0df57ca11ee53b48f3169fccb382980c5b38284d26714dbf9e
+
+Filter: payload_id WHERE bypass_at_k IS NULL in Flash×GPT-5.4 K=5 snapshot
+  (K=5: 469 attack-only / 274 bypassed (58.4%) / 195 never-bypassed (41.6%))
+
+Used by: F5-FlashGPT-K20Tail extension run (K=6..K=20 on never-at-K=5 subset).
+

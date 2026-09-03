@@ -1,0 +1,16 @@
+{
+  "name": "hangpay-native",
+  "version": "0.1.0",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "napi": { "name": "hangpay-native", "triples": {} },
+  "license": "MIT",
+  "scripts": {
+    "build": "napi build --platform --release",
+    "build:debug": "napi build --platform",
+    "prepublishOnly": "napi prepublish -t npm"
+  },
+  "devDependencies": { "@napi-rs/cli": "^2.18.0" },
+  "engines": { "node": ">=18.0.0" },
+  "packageManager": "npm@10.0.0"
+}

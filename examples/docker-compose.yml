@@ -1,0 +1,39 @@
+# Example Docker Compose for HangPay
+
+services:
+  hangpay:
+    build: ..
+    container_name: hangpay-mcp
+    restart: unless-stopped
+    environment:
+      HANGPAY_ALLOWED_CATEGORIES: '["aws", "cloudflare", "openai", "github"]'
+      HANGPAY_MAX_PER_TX: "100.0"
+      HANGPAY_MAX_DAILY: "500.0"
+      HANGPAY_BLOCK_LOOPS: "true"
+      HANGPAY_CDP_URL: "http://chromium:9222"
+      HANGPAY_AUTO_INJECT: "true"
+    volumes:
+      - ${HOME}/.config/hangpay:/home/hangpayuser/.config/hangpay:ro
+      - hangpay-state:/app/data
+    stdin_open: true
+    tty: false
+
+  chromium:
+    image: zenika/alpine-chrome:latest
+    container_name: hangpay-chromium
+    restart: unless-stopped
+    command:
+      - "--no-sandbox"
+      - "--disable-gpu"
+      - "--disable-dev-shm-usage"
+      - "--remote-debugging-address=0.0.0.0"
+      - "--remote-debugging-port=9222"
+    ports:
+      - "9222:9222"
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+
+volumes:
+  hangpay-state:

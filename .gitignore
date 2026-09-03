@@ -1,0 +1,56 @@
+node_modules/
+dist/
+*.js.map
+*.d.ts.map
+
+# Native build artifacts
+native/target/
+native/artifacts/
+*.node
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test
+coverage/
+tests/redteam/runs/*.jsonl
+tests/redteam/runs/*.done
+tests/redteam/runs/*.part-*.jsonl
+tests/redteam/runs/**/*.done
+tests/redteam/runs/**/*.part-live.jsonl
+tests/redteam/runs/**/*.part-live.jsonl.done
+tests/redteam/runs/archive/
+tests/redteam/runs/temp_*
+.venv-pg2/
+
+# State
+*.db
+*.db-shm
+*.db-wal
+
+# MCP Publisher secrets & binary — NEVER commit
+.mcpregistry_github_token
+.mcpregistry_registry_token
+mcp-publisher
+.bg-shell/
+
+temp_trash/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Claude Code per-developer settings (do not commit)
+.claude/
+
+# Smoke test transient outputs
+tests/redteam/runs/smoke-logs/

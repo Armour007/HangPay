@@ -1,0 +1,15 @@
+{
+  "$schema": "https://glama.ai/mcp/schemas/server.json",
+  "maintainers": ["akshay"],
+  "name": "hangpay — AI Agent Payment Runtime Security",
+  "description": "The runtime security layer for AI agent commerce. Drop-in CLI + MCP server — blocks hallucinated purchases and keeps card credentials out of agent context. Card details are injected directly into the browser DOM via CDP; they never enter the agent's context window.",
+  "license": "MIT",
+  "homepage": "https://github.com/akshay/HangPay",
+  "tools": [
+    { "name": "request_virtual_card", "description": "Issue a virtual card and inject credentials into the checkout page via CDP. Evaluates agent intent against spending policy and guardrail rules. Automatically scans the page for hidden prompt injections." },
+    { "name": "request_purchaser_info", "description": "Auto-fill billing/contact info (name, address, email, phone) into the active checkout page. Automatically scans the page for hidden prompt injections." },
+    { "name": "request_x402_payment", "description": "Pay for API calls via the x402 HTTP payment protocol, under the same budget and category guardrails as card payments." }
+  ],
+  "categories": ["finance", "security", "payments"],
+  "keywords": ["payment", "guardrail", "agentic", "mcp", "cli", "security", "cdp", "browser-automation", "agent-tool"]
+}

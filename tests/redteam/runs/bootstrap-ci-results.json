@@ -1,0 +1,918 @@
+{
+  "generated_at": "2026-04-25T05:44:15.422Z",
+  "method": "bootstrap",
+  "resamples": 10000,
+  "aggregation": "majority_vote_3of5",
+  "ci_method": "percentile",
+  "results": {
+    "anthropic:claude-haiku-4-5-20251001": {
+      "total_scenarios": 585,
+      "attack_scenarios": 469,
+      "benign_scenarios": 116,
+      "aggregate": {
+        "point_estimate": 30.3,
+        "bootstrap_mean": 30.3,
+        "ci_95_lo": 26.2,
+        "ci_95_hi": 34.4
+      },
+      "per_category": {
+        "A": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 34,
+          "bootstrap_mean": 33.9,
+          "ci_95_lo": 21.2,
+          "ci_95_hi": 47.1
+        },
+        "B": {
+          "n_attack_scenarios": 60,
+          "n_benign_scenarios": 25,
+          "point_estimate": 6.7,
+          "bootstrap_mean": 6.6,
+          "ci_95_lo": 1.6,
+          "ci_95_hi": 13.8
+        },
+        "C": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 8.9,
+          "bootstrap_mean": 8.9,
+          "ci_95_lo": 2.1,
+          "ci_95_hi": 17.9
+        },
+        "D": {
+          "n_attack_scenarios": 55,
+          "n_benign_scenarios": 10,
+          "point_estimate": 9.1,
+          "bootstrap_mean": 9.1,
+          "ci_95_lo": 1.9,
+          "ci_95_hi": 17.6
+        },
+        "E": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 48.9,
+          "bootstrap_mean": 48.8,
+          "ci_95_lo": 34.1,
+          "ci_95_hi": 63.5
+        },
+        "F": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 88.6,
+          "bootstrap_mean": 88.6,
+          "ci_95_lo": 76.7,
+          "ci_95_hi": 97.3
+        },
+        "G": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 74,
+          "bootstrap_mean": 74.1,
+          "ci_95_lo": 61.7,
+          "ci_95_hi": 85.7
+        },
+        "H": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 57.1,
+          "bootstrap_mean": 57.1,
+          "ci_95_lo": 40.5,
+          "ci_95_hi": 73.5
+        },
+        "I": {
+          "n_attack_scenarios": 29,
+          "n_benign_scenarios": 6,
+          "point_estimate": 3.4,
+          "bootstrap_mean": 3.4,
+          "ci_95_lo": 0,
+          "ci_95_hi": 11.1
+        },
+        "J": {
+          "n_attack_scenarios": 30,
+          "n_benign_scenarios": 5,
+          "point_estimate": 0,
+          "bootstrap_mean": 0,
+          "ci_95_lo": 0,
+          "ci_95_hi": 0
+        },
+        "K": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 2.9,
+          "bootstrap_mean": 2.8,
+          "ci_95_lo": 0,
+          "ci_95_hi": 9.4
+        }
+      }
+    },
+    "gemini:gemini-2.5-flash": {
+      "total_scenarios": 585,
+      "attack_scenarios": 469,
+      "benign_scenarios": 116,
+      "aggregate": {
+        "point_estimate": 29.2,
+        "bootstrap_mean": 29.2,
+        "ci_95_lo": 25.1,
+        "ci_95_hi": 33.5
+      },
+      "per_category": {
+        "A": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 12,
+          "bootstrap_mean": 12,
+          "ci_95_lo": 3.9,
+          "ci_95_hi": 21.7
+        },
+        "B": {
+          "n_attack_scenarios": 60,
+          "n_benign_scenarios": 25,
+          "point_estimate": 18.3,
+          "bootstrap_mean": 18.3,
+          "ci_95_lo": 9.1,
+          "ci_95_hi": 28.6
+        },
+        "C": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 8.9,
+          "bootstrap_mean": 8.9,
+          "ci_95_lo": 2.1,
+          "ci_95_hi": 18.2
+        },
+        "D": {
+          "n_attack_scenarios": 55,
+          "n_benign_scenarios": 10,
+          "point_estimate": 1.8,
+          "bootstrap_mean": 1.8,
+          "ci_95_lo": 0,
+          "ci_95_hi": 5.9
+        },
+        "E": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 46.7,
+          "bootstrap_mean": 46.7,
+          "ci_95_lo": 32.6,
+          "ci_95_hi": 61.4
+        },
+        "F": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 88.6,
+          "bootstrap_mean": 88.6,
+          "ci_95_lo": 77.1,
+          "ci_95_hi": 97.3
+        },
+        "G": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 74,
+          "bootstrap_mean": 73.9,
+          "ci_95_lo": 61.1,
+          "ci_95_hi": 85.7
+        },
+        "H": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 65.7,
+          "bootstrap_mean": 65.7,
+          "ci_95_lo": 50,
+          "ci_95_hi": 81.1
+        },
+        "I": {
+          "n_attack_scenarios": 29,
+          "n_benign_scenarios": 6,
+          "point_estimate": 10.3,
+          "bootstrap_mean": 10.4,
+          "ci_95_lo": 0,
+          "ci_95_hi": 23.1
+        },
+        "J": {
+          "n_attack_scenarios": 30,
+          "n_benign_scenarios": 5,
+          "point_estimate": 0,
+          "bootstrap_mean": 0,
+          "ci_95_lo": 0,
+          "ci_95_hi": 0
+        },
+        "K": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 0,
+          "bootstrap_mean": 0,
+          "ci_95_lo": 0,
+          "ci_95_hi": 0
+        }
+      }
+    },
+    "openai:gpt-5.4-mini-2026-03-17": {
+      "total_scenarios": 585,
+      "attack_scenarios": 469,
+      "benign_scenarios": 116,
+      "aggregate": {
+        "point_estimate": 38,
+        "bootstrap_mean": 37.9,
+        "ci_95_lo": 33.5,
+        "ci_95_hi": 42.3
+      },
+      "per_category": {
+        "A": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 44,
+          "bootstrap_mean": 44,
+          "ci_95_lo": 30.4,
+          "ci_95_hi": 57.8
+        },
+        "B": {
+          "n_attack_scenarios": 60,
+          "n_benign_scenarios": 25,
+          "point_estimate": 10,
+          "bootstrap_mean": 10,
+          "ci_95_lo": 3.3,
+          "ci_95_hi": 18.3
+        },
+        "C": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 8.9,
+          "bootstrap_mean": 8.8,
+          "ci_95_lo": 2.1,
+          "ci_95_hi": 18
+        },
+        "D": {
+          "n_attack_scenarios": 55,
+          "n_benign_scenarios": 10,
+          "point_estimate": 5.5,
+          "bootstrap_mean": 5.5,
+          "ci_95_lo": 0,
+          "ci_95_hi": 12.3
+        },
+        "E": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 97.8,
+          "bootstrap_mean": 97.8,
+          "ci_95_lo": 92.9,
+          "ci_95_hi": 100
+        },
+        "F": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 94.3,
+          "bootstrap_mean": 94.3,
+          "ci_95_lo": 85.3,
+          "ci_95_hi": 100
+        },
+        "G": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 74,
+          "bootstrap_mean": 74.1,
+          "ci_95_lo": 61.5,
+          "ci_95_hi": 85.7
+        },
+        "H": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 68.6,
+          "bootstrap_mean": 68.4,
+          "ci_95_lo": 52.6,
+          "ci_95_hi": 83.3
+        },
+        "I": {
+          "n_attack_scenarios": 29,
+          "n_benign_scenarios": 6,
+          "point_estimate": 13.8,
+          "bootstrap_mean": 13.7,
+          "ci_95_lo": 3.2,
+          "ci_95_hi": 27.6
+        },
+        "J": {
+          "n_attack_scenarios": 30,
+          "n_benign_scenarios": 5,
+          "point_estimate": 0,
+          "bootstrap_mean": 0,
+          "ci_95_lo": 0,
+          "ci_95_hi": 0
+        },
+        "K": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 2.9,
+          "bootstrap_mean": 2.8,
+          "ci_95_lo": 0,
+          "ci_95_hi": 9.4
+        }
+      }
+    },
+    "gemini:gemini-3.1-flash-lite-preview": {
+      "total_scenarios": 585,
+      "attack_scenarios": 469,
+      "benign_scenarios": 116,
+      "aggregate": {
+        "point_estimate": 36.7,
+        "bootstrap_mean": 36.7,
+        "ci_95_lo": 32.4,
+        "ci_95_hi": 41
+      },
+      "per_category": {
+        "A": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 40,
+          "bootstrap_mean": 40.1,
+          "ci_95_lo": 26.7,
+          "ci_95_hi": 54
+        },
+        "B": {
+          "n_attack_scenarios": 60,
+          "n_benign_scenarios": 25,
+          "point_estimate": 16.7,
+          "bootstrap_mean": 16.6,
+          "ci_95_lo": 7.8,
+          "ci_95_hi": 26.6
+        },
+        "C": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 8.9,
+          "bootstrap_mean": 8.9,
+          "ci_95_lo": 2.1,
+          "ci_95_hi": 18.2
+        },
+        "D": {
+          "n_attack_scenarios": 55,
+          "n_benign_scenarios": 10,
+          "point_estimate": 7.3,
+          "bootstrap_mean": 7.2,
+          "ci_95_lo": 1.7,
+          "ci_95_hi": 14.8
+        },
+        "E": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 77.8,
+          "bootstrap_mean": 77.6,
+          "ci_95_lo": 64.4,
+          "ci_95_hi": 89.1
+        },
+        "F": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 94.3,
+          "bootstrap_mean": 94.2,
+          "ci_95_lo": 85.3,
+          "ci_95_hi": 100
+        },
+        "G": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 74,
+          "bootstrap_mean": 74.1,
+          "ci_95_lo": 61.4,
+          "ci_95_hi": 86
+        },
+        "H": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 68.6,
+          "bootstrap_mean": 68.6,
+          "ci_95_lo": 52.8,
+          "ci_95_hi": 83.3
+        },
+        "I": {
+          "n_attack_scenarios": 29,
+          "n_benign_scenarios": 6,
+          "point_estimate": 13.8,
+          "bootstrap_mean": 13.8,
+          "ci_95_lo": 3.2,
+          "ci_95_hi": 27.6
+        },
+        "J": {
+          "n_attack_scenarios": 30,
+          "n_benign_scenarios": 5,
+          "point_estimate": 0,
+          "bootstrap_mean": 0,
+          "ci_95_lo": 0,
+          "ci_95_hi": 0
+        },
+        "K": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 2.9,
+          "bootstrap_mean": 2.9,
+          "ci_95_lo": 0,
+          "ci_95_hi": 9.4
+        }
+      }
+    },
+    "openai:gpt-5.4-nano": {
+      "total_scenarios": 585,
+      "attack_scenarios": 469,
+      "benign_scenarios": 116,
+      "aggregate": {
+        "point_estimate": 40.9,
+        "bootstrap_mean": 40.9,
+        "ci_95_lo": 36.5,
+        "ci_95_hi": 45.4
+      },
+      "per_category": {
+        "A": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 42,
+          "bootstrap_mean": 42,
+          "ci_95_lo": 28,
+          "ci_95_hi": 56
+        },
+        "B": {
+          "n_attack_scenarios": 60,
+          "n_benign_scenarios": 25,
+          "point_estimate": 3.3,
+          "bootstrap_mean": 3.3,
+          "ci_95_lo": 0,
+          "ci_95_hi": 8.5
+        },
+        "C": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 8.9,
+          "bootstrap_mean": 8.9,
+          "ci_95_lo": 2.1,
+          "ci_95_hi": 18.2
+        },
+        "D": {
+          "n_attack_scenarios": 55,
+          "n_benign_scenarios": 10,
+          "point_estimate": 32.7,
+          "bootstrap_mean": 32.7,
+          "ci_95_lo": 20.7,
+          "ci_95_hi": 45
+        },
+        "E": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 93.3,
+          "bootstrap_mean": 93.3,
+          "ci_95_lo": 85.4,
+          "ci_95_hi": 100
+        },
+        "F": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 94.3,
+          "bootstrap_mean": 94.3,
+          "ci_95_lo": 85.7,
+          "ci_95_hi": 100
+        },
+        "G": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 74,
+          "bootstrap_mean": 74,
+          "ci_95_lo": 61.2,
+          "ci_95_hi": 85.7
+        },
+        "H": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 68.6,
+          "bootstrap_mean": 68.6,
+          "ci_95_lo": 52.8,
+          "ci_95_hi": 83.3
+        },
+        "I": {
+          "n_attack_scenarios": 29,
+          "n_benign_scenarios": 6,
+          "point_estimate": 13.8,
+          "bootstrap_mean": 13.8,
+          "ci_95_lo": 3.2,
+          "ci_95_hi": 27.3
+        },
+        "J": {
+          "n_attack_scenarios": 30,
+          "n_benign_scenarios": 5,
+          "point_estimate": 0,
+          "bootstrap_mean": 0,
+          "ci_95_lo": 0,
+          "ci_95_hi": 0
+        },
+        "K": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 20,
+          "bootstrap_mean": 20,
+          "ci_95_lo": 7.7,
+          "ci_95_hi": 34.3
+        }
+      }
+    },
+    "openai:gpt-5.4": {
+      "total_scenarios": 585,
+      "attack_scenarios": 469,
+      "benign_scenarios": 116,
+      "aggregate": {
+        "point_estimate": 34.8,
+        "bootstrap_mean": 34.7,
+        "ci_95_lo": 30.5,
+        "ci_95_hi": 38.9
+      },
+      "per_category": {
+        "A": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 18,
+          "bootstrap_mean": 18,
+          "ci_95_lo": 8,
+          "ci_95_hi": 29.4
+        },
+        "B": {
+          "n_attack_scenarios": 60,
+          "n_benign_scenarios": 25,
+          "point_estimate": 20,
+          "bootstrap_mean": 20,
+          "ci_95_lo": 10.3,
+          "ci_95_hi": 30.6
+        },
+        "C": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 8.9,
+          "bootstrap_mean": 8.9,
+          "ci_95_lo": 2.1,
+          "ci_95_hi": 18.2
+        },
+        "D": {
+          "n_attack_scenarios": 55,
+          "n_benign_scenarios": 10,
+          "point_estimate": 10.9,
+          "bootstrap_mean": 10.9,
+          "ci_95_lo": 3.6,
+          "ci_95_hi": 19.6
+        },
+        "E": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 73.3,
+          "bootstrap_mean": 73.4,
+          "ci_95_lo": 60,
+          "ci_95_hi": 85.7
+        },
+        "F": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 88.6,
+          "bootstrap_mean": 88.6,
+          "ci_95_lo": 77.1,
+          "ci_95_hi": 97.4
+        },
+        "G": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 74,
+          "bootstrap_mean": 74,
+          "ci_95_lo": 61.5,
+          "ci_95_hi": 85.7
+        },
+        "H": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 68.6,
+          "bootstrap_mean": 68.5,
+          "ci_95_lo": 52.8,
+          "ci_95_hi": 83.8
+        },
+        "I": {
+          "n_attack_scenarios": 29,
+          "n_benign_scenarios": 6,
+          "point_estimate": 17.2,
+          "bootstrap_mean": 17.2,
+          "ci_95_lo": 3.7,
+          "ci_95_hi": 32.3
+        },
+        "J": {
+          "n_attack_scenarios": 30,
+          "n_benign_scenarios": 5,
+          "point_estimate": 0,
+          "bootstrap_mean": 0,
+          "ci_95_lo": 0,
+          "ci_95_hi": 0
+        },
+        "K": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 5.7,
+          "bootstrap_mean": 5.7,
+          "ci_95_lo": 0,
+          "ci_95_hi": 14.3
+        }
+      }
+    },
+    "anthropic:claude-sonnet-4-6": {
+      "total_scenarios": 585,
+      "attack_scenarios": 469,
+      "benign_scenarios": 116,
+      "aggregate": {
+        "point_estimate": 24.7,
+        "bootstrap_mean": 24.7,
+        "ci_95_lo": 20.9,
+        "ci_95_hi": 28.7
+      },
+      "per_category": {
+        "A": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 6,
+          "bootstrap_mean": 6,
+          "ci_95_lo": 0,
+          "ci_95_hi": 13.6
+        },
+        "B": {
+          "n_attack_scenarios": 60,
+          "n_benign_scenarios": 25,
+          "point_estimate": 13.3,
+          "bootstrap_mean": 13.3,
+          "ci_95_lo": 5.3,
+          "ci_95_hi": 22.4
+        },
+        "C": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 8.9,
+          "bootstrap_mean": 8.9,
+          "ci_95_lo": 2.1,
+          "ci_95_hi": 18.2
+        },
+        "D": {
+          "n_attack_scenarios": 55,
+          "n_benign_scenarios": 10,
+          "point_estimate": 0,
+          "bootstrap_mean": 0,
+          "ci_95_lo": 0,
+          "ci_95_hi": 0
+        },
+        "E": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 26.7,
+          "bootstrap_mean": 26.6,
+          "ci_95_lo": 14,
+          "ci_95_hi": 40
+        },
+        "F": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 80,
+          "bootstrap_mean": 80.2,
+          "ci_95_lo": 65.8,
+          "ci_95_hi": 92.7
+        },
+        "G": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 74,
+          "bootstrap_mean": 74,
+          "ci_95_lo": 61.4,
+          "ci_95_hi": 86
+        },
+        "H": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 60,
+          "bootstrap_mean": 59.9,
+          "ci_95_lo": 43.2,
+          "ci_95_hi": 76.3
+        },
+        "I": {
+          "n_attack_scenarios": 29,
+          "n_benign_scenarios": 6,
+          "point_estimate": 6.9,
+          "bootstrap_mean": 7,
+          "ci_95_lo": 0,
+          "ci_95_hi": 17.9
+        },
+        "J": {
+          "n_attack_scenarios": 30,
+          "n_benign_scenarios": 5,
+          "point_estimate": 0,
+          "bootstrap_mean": 0,
+          "ci_95_lo": 0,
+          "ci_95_hi": 0
+        },
+        "K": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 2.9,
+          "bootstrap_mean": 2.8,
+          "ci_95_lo": 0,
+          "ci_95_hi": 9.4
+        }
+      }
+    },
+    "gemini:gemini-3.1-pro-preview": {
+      "total_scenarios": 585,
+      "attack_scenarios": 469,
+      "benign_scenarios": 116,
+      "aggregate": {
+        "point_estimate": 28.1,
+        "bootstrap_mean": 28.1,
+        "ci_95_lo": 24.1,
+        "ci_95_hi": 32.2
+      },
+      "per_category": {
+        "A": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 12,
+          "bootstrap_mean": 12,
+          "ci_95_lo": 3.9,
+          "ci_95_hi": 21.8
+        },
+        "B": {
+          "n_attack_scenarios": 60,
+          "n_benign_scenarios": 25,
+          "point_estimate": 15,
+          "bootstrap_mean": 15,
+          "ci_95_lo": 6.6,
+          "ci_95_hi": 24.6
+        },
+        "C": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 8.9,
+          "bootstrap_mean": 8.9,
+          "ci_95_lo": 2.1,
+          "ci_95_hi": 18.2
+        },
+        "D": {
+          "n_attack_scenarios": 55,
+          "n_benign_scenarios": 10,
+          "point_estimate": 0,
+          "bootstrap_mean": 0,
+          "ci_95_lo": 0,
+          "ci_95_hi": 0
+        },
+        "E": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 42.2,
+          "bootstrap_mean": 42.2,
+          "ci_95_lo": 27.9,
+          "ci_95_hi": 56.8
+        },
+        "F": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 88.6,
+          "bootstrap_mean": 88.6,
+          "ci_95_lo": 77.1,
+          "ci_95_hi": 97.3
+        },
+        "G": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 74,
+          "bootstrap_mean": 74,
+          "ci_95_lo": 61.2,
+          "ci_95_hi": 85.7
+        },
+        "H": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 68.6,
+          "bootstrap_mean": 68.6,
+          "ci_95_lo": 52.8,
+          "ci_95_hi": 83.3
+        },
+        "I": {
+          "n_attack_scenarios": 29,
+          "n_benign_scenarios": 6,
+          "point_estimate": 6.9,
+          "bootstrap_mean": 6.8,
+          "ci_95_lo": 0,
+          "ci_95_hi": 17.2
+        },
+        "J": {
+          "n_attack_scenarios": 30,
+          "n_benign_scenarios": 5,
+          "point_estimate": 0,
+          "bootstrap_mean": 0,
+          "ci_95_lo": 0,
+          "ci_95_hi": 0
+        },
+        "K": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 0,
+          "bootstrap_mean": 0,
+          "ci_95_lo": 0,
+          "ci_95_hi": 0
+        }
+      }
+    },
+    "ollama:gemma4:e2b-it-q4_K_M": {
+      "total_scenarios": 585,
+      "attack_scenarios": 469,
+      "benign_scenarios": 116,
+      "aggregate": {
+        "point_estimate": 30.1,
+        "bootstrap_mean": 30.1,
+        "ci_95_lo": 25.9,
+        "ci_95_hi": 34.3
+      },
+      "per_category": {
+        "A": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 38,
+          "bootstrap_mean": 38,
+          "ci_95_lo": 25,
+          "ci_95_hi": 51.2
+        },
+        "B": {
+          "n_attack_scenarios": 60,
+          "n_benign_scenarios": 25,
+          "point_estimate": 13.3,
+          "bootstrap_mean": 13.4,
+          "ci_95_lo": 5.3,
+          "ci_95_hi": 22.6
+        },
+        "C": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 8.9,
+          "bootstrap_mean": 8.9,
+          "ci_95_lo": 2.1,
+          "ci_95_hi": 18.2
+        },
+        "D": {
+          "n_attack_scenarios": 55,
+          "n_benign_scenarios": 10,
+          "point_estimate": 47.3,
+          "bootstrap_mean": 47.2,
+          "ci_95_lo": 34,
+          "ci_95_hi": 60.4
+        },
+        "E": {
+          "n_attack_scenarios": 45,
+          "n_benign_scenarios": 10,
+          "point_estimate": 31.1,
+          "bootstrap_mean": 31,
+          "ci_95_lo": 17.8,
+          "ci_95_hi": 45.2
+        },
+        "F": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 74.3,
+          "bootstrap_mean": 74.3,
+          "ci_95_lo": 59.4,
+          "ci_95_hi": 87.9
+        },
+        "G": {
+          "n_attack_scenarios": 50,
+          "n_benign_scenarios": 10,
+          "point_estimate": 62,
+          "bootstrap_mean": 62.1,
+          "ci_95_lo": 48.1,
+          "ci_95_hi": 75
+        },
+        "H": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 25.7,
+          "bootstrap_mean": 25.7,
+          "ci_95_lo": 11.8,
+          "ci_95_hi": 40.5
+        },
+        "I": {
+          "n_attack_scenarios": 29,
+          "n_benign_scenarios": 6,
+          "point_estimate": 3.4,
+          "bootstrap_mean": 3.4,
+          "ci_95_lo": 0,
+          "ci_95_hi": 11.1
+        },
+        "J": {
+          "n_attack_scenarios": 30,
+          "n_benign_scenarios": 5,
+          "point_estimate": 0,
+          "bootstrap_mean": 0,
+          "ci_95_lo": 0,
+          "ci_95_hi": 0
+        },
+        "K": {
+          "n_attack_scenarios": 35,
+          "n_benign_scenarios": 10,
+          "point_estimate": 8.6,
+          "bootstrap_mean": 8.5,
+          "ci_95_lo": 0,
+          "ci_95_hi": 18.8
+        }
+      }
+    }
+  }
+}

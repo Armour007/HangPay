@@ -1,0 +1,12 @@
+{
+  "algo": "aes-256-gcm",
+  "kdf": "scrypt",
+  "kdf_params": {
+    "N": 131072,
+    "r": 8,
+    "p": 1,
+    "dkLen": 32
+  },
+  "flag_prefix": "POPPAY_CHALLENGE_FLAG_2026_04_",
+  "created_at": "2026-04-14T20:25:09.297Z"
+}

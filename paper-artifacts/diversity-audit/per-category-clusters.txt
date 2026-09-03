@@ -1,0 +1,244 @@
+Corpus Diversity Audit — per-category clusters
+============================================================
+Corpus: /Users/akshay/DEV/2026_DEV/AgentPay/hangpay-npm/tests/redteam/corpus/attacks.json
+Embedding: sentence-transformers:sentence-transformers/all-MiniLM-L6-v2
+Threshold: max cluster <= 40.0% (paper §3.2)
+Overall: PASS
+
+Category A: n=60, k=11, max_cluster=12 (20.0%) [PASS]
+  cluster sizes: [12, 8, 8, 5, 5, 5, 4, 4, 4, 3, 2]
+  cluster 0: unicode_homoglyph×1, none×1
+  cluster 1: punctuation_insertion×2, none×2
+  cluster 2: punctuation_insertion×6, base64×1, injection×1, casing×1, diacritic×1
+  cluster 3: punctuation_insertion×2, none×2
+  cluster 4: punctuation_insertion×5, none×3, diacritic×1, paraphrase×1, leet×1
+  cluster 5: unicode_homoglyph×2, none×2, paraphrase×1
+  cluster 6: punctuation_insertion×4, leet×1
+  cluster 7: punctuation_insertion×4, leet×2, zero_width×1, injection×1, diacritic×1
+  cluster 8: punctuation_insertion×2, whitespace_smuggle×1
+  cluster 9: punctuation_insertion×3, unicode_homoglyph×1, whitespace_smuggle×1
+  cluster 10: punctuation_insertion×3, unicode_homoglyph×1
+
+Category B: n=85, k=13, max_cluster=10 (11.76%) [PASS]
+  cluster sizes: [10, 10, 9, 9, 8, 7, 6, 6, 5, 5, 5, 3, 2]
+  cluster 0: trailing_punct×2, underscore_swap×1, token_boundary×1, casing×1
+  cluster 1: token_boundary×7, known_vendor_prefix×3, domain_subset×3, hyphen_smuggle×2, subset_match×1
+  cluster 2: hyphen_smuggle×1, token_boundary×1, casing×1
+  cluster 3: token_boundary×3, known_vendor_prefix×2, domain_subset×2, concat_abuse×1, casing×1
+  cluster 4: token_boundary×5, domain_subset×3, hyphen_smuggle×2, underscore_swap×2, concat_abuse×1
+  cluster 5: hyphen_smuggle×5, domain_subset×4, token_boundary×3, casing×2, known_vendor_prefix×1
+  cluster 6: token_boundary×5, hyphen_smuggle×2, concat_abuse×1, domain_subset×1, casing×1
+  cluster 7: token_boundary×2, casing×2, known_vendor_prefix×1, domain_subset×1, hyphen_smuggle×1
+  cluster 8: token_boundary×2, concat_abuse×1, underscore_swap×1, domain_subset×1, hyphen_smuggle×1
+  cluster 9: token_boundary×3, underscore_swap×2, known_vendor_prefix×2, domain_subset×2, concat_abuse×1
+  cluster 10: domain_subset×4, subset_match×3, token_boundary×3, known_vendor_prefix×2, substring_abuse×1
+  cluster 11: domain_subset×4, token_boundary×2, hyphen_smuggle×2, known_vendor_prefix×1, trailing_punct×1
+  cluster 12: token_boundary×4, hyphen_smuggle×2, known_vendor_prefix×2, domain_subset×2, concat_abuse×1
+
+Category C: n=55, k=17, max_cluster=7 (12.73%) [PASS]
+  cluster sizes: [7, 6, 5, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 1, 1, 1]
+  cluster 0: hash_smuggle×1
+  cluster 1: subdomain_spoof×2, cross_tld×1, trailing_dot×1, legit_subdomain×1
+  cluster 2: lookalike_domain×2, tld_lookalike×1, subdomain_spoof×1, path_smuggle×1, www_subdomain×1
+  cluster 3: lookalike_domain×2, subdomain_prefix×1, legit_subdomain×1
+  cluster 4: subdomain_spoof×1, unicode_homoglyph_domain×1, port_smuggle×1, legit_domain×1
+  cluster 5: lookalike_domain×3, subdomain_prefix×1, path_smuggle×1, legit_subdomain×1
+  cluster 6: path_smuggle×2, subdomain_spoof×1
+  cluster 7: lookalike_domain×1, dns_rebind×1
+  cluster 8: subdomain_prefix×1
+  cluster 9: lookalike_domain×1, subdomain_spoof×1
+  cluster 10: lookalike_domain×2, subdomain_prefix×1, unicode_homoglyph_domain×1, tld_lookalike×1, legit_domain×1
+  cluster 11: subdomain_prefix×2, subdomain_spoof×1, lookalike_domain×1, legit_subdomain×1
+  cluster 12: lookalike_domain×1, cross_tld×1, subdomain_spoof×1, uppercase_domain×1
+  cluster 13: lookalike_domain×2
+  cluster 14: punycode×1, unicode_homoglyph_domain×1, cross_tld×1, parked_domain×1, legit_domain×1
+  cluster 15: subdomain_spoof×1
+  cluster 16: subdomain_prefix×1, legit_domain×1
+
+Category D: n=65, k=23, max_cluster=7 (10.77%) [PASS]
+  cluster sizes: [7, 6, 5, 5, 4, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1]
+  cluster 0: url_encoded_prompt×1, paraphrase_jailbreak×1
+  cluster 1: role_hijack×2, multilang×1, authority_spoof×1
+  cluster 2: developer_mode_claim×2, tag_smuggle×1, markdown_smuggle×1, paraphrase_jailbreak×1, authority_spoof×1
+  cluster 3: role_hijack×2, system_prompt_claim×1, ignore_previous×1
+  cluster 4: tag_smuggle×5, role_hijack×2, markdown_smuggle×1, xml_injection×1
+  cluster 5: ignore_previous×2, authority_spoof×1, override_claim×1, chinese_injection×1, leet_speak×1
+  cluster 6: code_block_smuggle×2, system_prompt_claim×1, role_hijack×1, tag_smuggle×1
+  cluster 7: emoji_disguise×2, authority_spoof×1, override_claim×1, ignore_previous×1
+  cluster 8: benign×2, xml_injection×1, tag_smuggle×1
+  cluster 9: vendor_injection×1, tag_smuggle×1, jailbreak_template×1, paraphrase_jailbreak×1, previous_mention×1
+  cluster 10: authority_spoof×2, user_impersonation×1
+  cluster 11: paraphrase_jailbreak×2, benign×2, xml_injection×1, tag_smuggle×1, role_hijack×1
+  cluster 12: system_prompt_claim×2, authority_spoof×2, ignore_previous×1, override_claim×1, emoji_disguise×1
+  cluster 13: authority_spoof×1
+  cluster 14: authority_spoof×1, benign×1
+  cluster 15: authority_spoof×1, system_prompt_claim×1
+  cluster 16: benign×2
+  cluster 17: tag_smuggle×2, override_claim×1, markdown_smuggle×1, benign×1
+  cluster 18: base64_reasoning×1, authority_spoof×1
+  cluster 19: user_impersonation×1
+  cluster 20: paraphrase_jailbreak×1, ignore_previous×1, user_impersonation×1, system_mention_benign×1
+  cluster 21: authority_spoof×1, override_claim×1
+  cluster 22: code_block_smuggle×1
+
+Category E: n=55, k=16, max_cluster=8 (14.55%) [PASS]
+  cluster sizes: [8, 5, 5, 5, 4, 4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1]
+  cluster 0: scientific_notation×1, locale_decimal×1, none×1
+  cluster 1: understatement×1, fraction×1, cents_dollars×1
+  cluster 2: rounding_trick×2, overstatement×2, cents_dollars×1, locale_decimal×1
+  cluster 3: scale_misdirection×2, probe_pattern×1, cents_dollars×1
+  cluster 4: locale_decimal×2, probe_pattern×1
+  cluster 5: scale_misdirection×3, unit_switch×1, overstatement×1, percentage_amount×1
+  cluster 6: understatement×2
+  cluster 7: scientific_notation×2, overstatement×1, rounding_trick×1, currency_ambiguity×1
+  cluster 8: none×5, leet_amount×2, rounding_trick×1
+  cluster 9: unit_switch×1, currency_ambiguity×1, rounding_trick×1
+  cluster 10: cents_dollars×2, overstatement×2, scientific_notation×1
+  cluster 11: probe_pattern×2, understatement×1, probe×1
+  cluster 12: none×3
+  cluster 13: unit_switch×1, understatement×1, leet_amount×1
+  cluster 14: none×1
+  cluster 15: annualized_framing×2
+
+Category F: n=45, k=21, max_cluster=4 (8.89%) [PASS]
+  cluster sizes: [4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1]
+  cluster 0: none×2
+  cluster 1: batch_continuation×1, followup_fake×1
+  cluster 2: queued_transaction×2
+  cluster 3: confirmation_code_claim×2
+  cluster 4: receipt_reference×2, continuity_claim×1, followup_fake×1, ticket_reference×1
+  cluster 5: contract_continuation×2
+  cluster 6: retry_of_approved×2
+  cluster 7: legacy_obligation×2, installment_claim×1
+  cluster 8: none×3
+  cluster 9: subscription_midcycle×2, prior_conversation_claim×1, ticket_reference×1
+  cluster 10: resumption×1
+  cluster 11: partial_payment×2, installment_claim×1, prior_conversation_claim×1
+  cluster 12: prior_conversation_claim×1, none×1
+  cluster 13: none×1
+  cluster 14: refund_reversal×1, ticket_reference×1
+  cluster 15: interrupted_flow×2, resumption×2
+  cluster 16: pending_approval_claim×2
+  cluster 17: batch_continuation×1
+  cluster 18: none×2
+  cluster 19: split_payment_claim×2
+  cluster 20: promised_renewal×2, none×1
+
+Category G: n=60, k=23, max_cluster=6 (10.0%) [PASS]
+  cluster sizes: [6, 6, 5, 5, 5, 4, 4, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  cluster 0: zero_width_in_body×1, white_on_white_text×1, alt_text_directive×1, noscript_injection×1, clean_page×1
+  cluster 1: script_tag_comment×1, placeholder_directive×1, css_content_pseudo×1, comment_in_style×1, html_comment_injection×1
+  cluster 2: aria_hidden_directive×1, css_positioning_offscreen×1, textarea_prefill×1, meta_tag_injection×1, zero_width_in_body×1
+  cluster 3: css_hidden_div×2, textarea_prefill×1, json_ld_directive×1
+  cluster 4: clean_page×4, html_comment_injection×1, meta_tag_injection×1
+  cluster 5: alt_text_directive×1, comment_in_style×1, iframe_srcdoc×1, unicode_rtl_override×1
+  cluster 6: css_positioning_offscreen×1, css_content_pseudo×1, css_hidden_div×1, meta_tag_injection×1, clean_page×1
+  cluster 7: script_tag_comment×1, noscript_injection×1, data_attribute_directive×1
+  cluster 8: data_attribute_directive×1, white_on_white_text×1, aria_hidden_directive×1
+  cluster 9: unicode_rtl_override×1
+  cluster 10: hidden_input_value×1
+  cluster 11: zero_width_in_body×1, clean_page×1
+  cluster 12: svg_title_injection×1
+  cluster 13: white_on_white_text×1, clean_page×1
+  cluster 14: aria_hidden_directive×1, hidden_input_value×1
+  cluster 15: iframe_srcdoc×1
+  cluster 16: svg_title_injection×1
+  cluster 17: placeholder_directive×1
+  cluster 18: title_attribute_instruction×1, html_comment_injection×1
+  cluster 19: title_attribute_instruction×1
+  cluster 20: base64_img_directive×1
+  cluster 21: base64_img_directive×1, clean_page×1
+  cluster 22: json_ld_directive×1
+
+Category H: n=45, k=21, max_cluster=5 (11.11%) [PASS]
+  cluster sizes: [5, 5, 4, 4, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  cluster 0: paypal_typo×1, typosquat×1
+  cluster 1: multi_tld×1, braintree_typo×1, subdomain_reversal×1, adyen_typo×1, trailing_dot_domain×1
+  cluster 2: processor_lookalike×2, zero_width_domain×1, multi_tld×1, square_typo×1, port_based_spoof×1
+  cluster 3: legit_processor×3, square_typo×1, typosquat×1
+  cluster 4: adyen_typo×1, processor_lookalike×1, legit_processor×1
+  cluster 5: braintree_typo×2, port_based_spoof×1, percent_encoded_domain×1, paypal_typo×1, confusable_path×1
+  cluster 6: paypal_typo×3, subdomain_reversal×1, mercado_typo×1, processor_lookalike×1, trailing_dot_domain×1
+  cluster 7: legit_processor×2, subdomain_reversal×1, confusable_path×1, multi_tld×1, idn_homograph×1
+  cluster 8: legit_processor×2
+  cluster 9: typosquat×2, processor_lookalike×1, braintree_typo×1, fake_https_wording×1, adyen_typo×1
+  cluster 10: percent_encoded_domain×1, processor_lookalike×1, unicode_dot×1, paypal_typo×1
+  cluster 11: fake_https_wording×1, processor_lookalike×1
+  cluster 12: legit_processor×1
+  cluster 13: punycode_domain×1, typosquat×1
+  cluster 14: legit_processor×1
+  cluster 15: processor_lookalike×1, typosquat×1
+  cluster 16: idn_homograph×1, adyen_typo×1
+  cluster 17: userinfo_confusion×1, fake_https_wording×1
+  cluster 18: cert_lookalike×1, adyen_typo×1, userinfo_confusion×1, square_typo×1
+  cluster 19: unicode_dot×1, processor_lookalike×1
+  cluster 20: zero_width_domain×1, braintree_typo×1
+
+Category I: n=35, k=21, max_cluster=4 (11.43%) [PASS]
+  cluster sizes: [4, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  cluster 0: reasoning_max_length×1, js_in_vendor×1, clean_input×1
+  cluster 1: path_traversal×1, url_in_vendor×1, control_char×1
+  cluster 2: null_byte×1, trailing_null×1
+  cluster 3: huge_amount×2, tiny_amount×2
+  cluster 4: path_traversal×1
+  cluster 5: clean_input×1
+  cluster 6: control_char×1, vendor_max_length×1
+  cluster 7: bidi_override×1
+  cluster 8: whitespace_only_vendor×2, newline_in_vendor×1
+  cluster 9: nfd_nfc_mismatch×1
+  cluster 10: tab_smuggle×1
+  cluster 11: clean_input×2
+  cluster 12: vendor_max_length×1, unicode_normalization×1
+  cluster 13: clean_input×1
+  cluster 14: surrogate_pair×1
+  cluster 15: unicode_normalization×1
+  cluster 16: newline_in_vendor×1
+  cluster 17: emoji_vendor×1
+  cluster 18: tiny_amount×1
+  cluster 19: duplicate_whitespace×1
+  cluster 20: js_in_vendor×1, json_in_vendor×1
+
+Category J: n=35, k=17, max_cluster=6 (17.14%) [PASS]
+  cluster sizes: [6, 5, 3, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1]
+  cluster 0: config_override_claim×2, sudo_claim×1, admin_override×1, oauth_bypass_claim×1, allowlist_mutation_claim×1
+  cluster 1: env_var_instruction×3, sudo_claim×2, config_file_claim×1, admin_override×1, registry_override×1
+  cluster 2: config_override_claim×2, admin_override×2
+  cluster 3: emergency_bypass_claim×2, policy_file_claim×1, feature_flag_claim×1, admin_override×1, config_override_claim×1
+  cluster 4: none×2
+  cluster 5: env_disable_claim×1, dot_env_write_claim×1, env_var_instruction×1
+  cluster 6: admin_override×1, signed_token_claim×1
+  cluster 7: allowlist_mutation_claim×1, policy_file_claim×1
+  cluster 8: allowlist_mutation_claim×1, sudo_claim×1
+  cluster 9: policy_file_claim×2, allowlist_mutation_claim×1, config_file_claim×1
+  cluster 10: none×1
+  cluster 11: admin_override×2, jwt_spoof_claim×1, signed_token_claim×1
+  cluster 12: signed_token_claim×1, admin_override×1
+  cluster 13: none×2
+  cluster 14: feature_flag_claim×1, config_override_claim×1, allowlist_mutation_claim×1, env_var_instruction×1
+  cluster 15: admin_override×1, config_override_claim×1
+  cluster 16: env_var_instruction×1, config_override_claim×1
+
+Category K: n=45, k=21, max_cluster=6 (13.33%) [PASS]
+  cluster sizes: [6, 6, 5, 4, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  cluster 0: xml_response_request×2, yaml_response_request×1
+  cluster 1: output_format_hijack×2, extra_key_injection×2, language_switch_format×1, truthy_coerce×1
+  cluster 2: none×2
+  cluster 3: none×2
+  cluster 4: escape_smuggle×1
+  cluster 5: none×2
+  cluster 6: unicode_true×2, markdown_wrap×1, prototype_pollution_key×1, code_fence_wrap×1, nested_object_request×1
+  cluster 7: string_true×1, output_format_hijack×1, truthy_coerce×1, falsy_coerce×1
+  cluster 8: numeric_approve×1, falsy_coerce×1, null_approve×1, array_response×1, nested_object_request×1
+  cluster 9: none×1
+  cluster 10: escape_smuggle×1
+  cluster 11: prototype_pollution_key×1
+  cluster 12: none×1
+  cluster 13: empty_response_request×1, markdown_wrap×1
+  cluster 14: multi_line_reason×1
+  cluster 15: multi_line_reason×1
+  cluster 16: none×1
+  cluster 17: yaml_response_request×1
+  cluster 18: none×1
+  cluster 19: trailing_comma×2
+  cluster 20: language_switch_format×1
+

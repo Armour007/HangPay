@@ -1,0 +1,26 @@
+# attacks-nano-opus-tail-51.json — provenance
+
+output_file:        tests/redteam/corpus/attacks-nano-opus-tail-51.json
+output_sha256:      ca67672b6a14a31e0b987c1a180ec305e50019a365fc9abc63ac3f7142caf249
+output_count:       51
+
+## Source files
+partial_snapshot:   tests/redteam/runs/adaptive/2026-04-30T07-16-54-003Z-openai_gpt-5.4-nano.partial-snapshot-418.jsonl
+partial_snapshot_sha256: 2c187e660f29a7fe18cb74db8f39431f66d6cb9ea606d312df71aa3aebb44404
+full_corpus:        tests/redteam/corpus/attacks.json
+full_corpus_sha256: c3892e15c4f9f9b1f837d7316b282edb2952d78c8e0bc89e8a409c8c4532d0b9
+
+## Filter criterion
+tail = full_corpus.id NOT IN partial_snapshot.payload_id
+(i.e., the 51 payloads uncovered when F5-Nano-Opus credit-balance
+TERMINAL pause hit at row 418/469 on 2026-04-30T10:04:53.830Z)
+
+## Category distribution
+  J: 16
+  K: 35
+
+## Use
+Dispatch as F5-Nano-Opus-Tail with --corpus=tests/redteam/corpus/attacks-nano-opus-tail-51.json,
+  same model/attacker/threat-model/kmax as F5-Nano-Opus parent.
+Merge: 418-snapshot rows + 51-tail rows = 469-row union for Tab 11 row 9.
+

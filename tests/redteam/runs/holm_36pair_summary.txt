@@ -1,0 +1,16 @@
+Across 36 pairwise guardrail-model contrasts x 11 categories (396 hypotheses), Holm-Bonferroni step-down correction at alpha=0.05 admits 34 significant per-category model differences (34/396 = 8.6%).
+The strongest survivors (top 10 by adjusted p) concentrate in the categories where the spread between strongest and weakest guardrails is largest (Sonnet/Pro at the resilient end, Nano/Gemma4 at the bypass-prone end); marginal between-model gaps within the mid-tier (Flash, Flash-Lite, gpt-5.4-mini, Haiku) largely fall below the corrected threshold.
+Take-home: per-category bolded winners in Table 5 should be read as point estimates; after Holm correction across all 396 contrasts, only the largest gaps (typically involving Sonnet, Pro-Preview, or the weakest models Nano/Gemma4) remain significant.
+
+Top significant comparisons (by Holm-adjusted p):
+  - 3.1-pro-prev vs gpt5.4-mini on Cat D: 25.5% vs 98.2% (n=55/55, raw p=4.22e-15, Holm-adj p=1.67e-12)
+  - 3.1-pro-prev vs gpt5.4 on Cat D: 25.5% vs 98.2% (n=55/55, raw p=4.22e-15, Holm-adj p=1.67e-12)
+  - 3.1-pro-prev vs gemma4 on Cat D: 25.5% vs 98.2% (n=55/55, raw p=4.22e-15, Holm-adj p=1.67e-12)
+  - 3.1-pro-prev vs gpt5.4-nano on Cat D: 25.5% vs 96.4% (n=55/55, raw p=2.53e-14, Holm-adj p=9.95e-12)
+  - sonnet-4-6 vs gpt5.4-mini on Cat D: 30.9% vs 98.2% (n=55/55, raw p=1.65e-13, Holm-adj p=6.47e-11)
+  - sonnet-4-6 vs gpt5.4 on Cat D: 30.9% vs 98.2% (n=55/55, raw p=1.65e-13, Holm-adj p=6.47e-11)
+  - sonnet-4-6 vs gemma4 on Cat D: 30.9% vs 98.2% (n=55/55, raw p=1.65e-13, Holm-adj p=6.47e-11)
+  - sonnet-4-6 vs gpt5.4-nano on Cat D: 30.9% vs 96.4% (n=55/55, raw p=9.65e-13, Holm-adj p=3.75e-10)
+  - 3.1-pro-prev vs gpt5.4-nano on Cat K: 20.0% vs 97.1% (n=35/35, raw p=5.71e-11, Holm-adj p=2.21e-08)
+  - 3.1-pro-prev vs 3.1-flash-lite on Cat D: 25.5% vs 87.3% (n=55/55, raw p=6.29e-11, Holm-adj p=2.43e-08)
+

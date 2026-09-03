@@ -1,0 +1,47 @@
+# hangpay doctor — remediation catalog
+# Text catalog decoupled from code so messaging can evolve without code changes.
+# Schema:
+#   <check_id>:
+#     remediation: "<single-line action user can take>"
+#     blocker: true|false   # if failing, hangpay cannot start
+
+node_version:
+  remediation: "Upgrade Node.js to v18 or newer (https://nodejs.org)."
+  blocker: true
+
+chromium:
+  remediation: "Install Google Chrome / Chromium, or set HANGPAY_CHROME_PATH to the executable."
+  blocker: true
+
+cdp_port:
+  remediation: "Kill the conflicting process, or set HANGPAY_CDP_URL=http://localhost:<other-port>."
+  blocker: false
+
+config_dir:
+  remediation: "Run: mkdir -p ~/.config/hangpay"
+  blocker: false
+
+vault:
+  remediation: "Run: hangpay init-vault  (or set HANGPAY_VAULT_PATH to an existing vault)."
+  blocker: false
+
+env_vars:
+  remediation: "Check ~/.config/hangpay/.env — see docs/ENV_REFERENCE.md for names and formats."
+  blocker: false
+
+policy_config:
+  remediation: "HANGPAY_ALLOWED_CATEGORIES / HANGPAY_ALLOWED_PAYMENT_PROCESSORS must be valid JSON arrays."
+  blocker: false
+
+layer1_probe:
+  remediation: "Layer 1 is pure local logic — a failure here indicates a bug. File an issue."
+  blocker: true
+
+layer2_probe:
+  remediation: "Check HANGPAY_LLM_API_KEY, HANGPAY_LLM_BASE_URL, HANGPAY_LLM_MODEL; verify network reachability."
+  blocker: false
+
+injector_smoke:
+  remediation: "Ensure Chromium can launch headless — see docs/DOCTOR.md troubleshooting."
+  blocker: false
+

@@ -1,0 +1,105 @@
+{
+  "type": "fr_vs_bypass_scatter",
+  "method": "9-model static benchmark, hybrid-runner verdicts reduced to majority-of-5-repeats per payload. Bypass denominator = attack-only evaluations; FR denominator = benign-only evaluations. No new API calls.",
+  "n_models": 9,
+  "stripe_radar_baseline_fr_pct": [
+    0.05,
+    0.1
+  ],
+  "stripe_radar_note": "Stripe Radar's published commercial-fraud-detection FR range; bypass rate not publicly disclosed (FR-only comparison).",
+  "points": [
+    {
+      "model": "claude-sonnet-4-6",
+      "n_attacks": 469,
+      "n_benigns": 116,
+      "bypass_count": 117,
+      "fr_count": 9,
+      "bypass_pct": 24.946695095948826,
+      "fr_pct": 7.758620689655173
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "n_attacks": 469,
+      "n_benigns": 116,
+      "bypass_count": 132,
+      "fr_count": 9,
+      "bypass_pct": 28.14498933901919,
+      "fr_pct": 7.758620689655173
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "n_attacks": 469,
+      "n_benigns": 116,
+      "bypass_count": 137,
+      "fr_count": 12,
+      "bypass_pct": 29.21108742004264,
+      "fr_pct": 10.344827586206897
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "n_attacks": 469,
+      "n_benigns": 116,
+      "bypass_count": 142,
+      "fr_count": 9,
+      "bypass_pct": 30.2771855010661,
+      "fr_pct": 7.758620689655173
+    },
+    {
+      "model": "gpt-5.4",
+      "n_attacks": 469,
+      "n_benigns": 116,
+      "bypass_count": 163,
+      "fr_count": 9,
+      "bypass_pct": 34.7547974413646,
+      "fr_pct": 7.758620689655173
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "n_attacks": 469,
+      "n_benigns": 116,
+      "bypass_count": 172,
+      "fr_count": 9,
+      "bypass_pct": 36.67377398720683,
+      "fr_pct": 7.758620689655173
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "n_attacks": 469,
+      "n_benigns": 116,
+      "bypass_count": 178,
+      "fr_count": 10,
+      "bypass_pct": 37.953091684434966,
+      "fr_pct": 8.620689655172415
+    },
+    {
+      "model": "gemma4",
+      "n_attacks": 469,
+      "n_benigns": 116,
+      "bypass_count": 186,
+      "fr_count": 11,
+      "bypass_pct": 39.6588486140725,
+      "fr_pct": 9.482758620689655
+    },
+    {
+      "model": "gpt-5.4-nano",
+      "n_attacks": 469,
+      "n_benigns": 116,
+      "bypass_count": 192,
+      "fr_count": 10,
+      "bypass_pct": 40.93816631130064,
+      "fr_pct": 8.620689655172415
+    }
+  ],
+  "headline_observations": {
+    "min_bypass_pct": 24.946695095948826,
+    "max_bypass_pct": 40.93816631130064,
+    "min_fr_pct": 7.758620689655173,
+    "max_fr_pct": 10.344827586206897,
+    "models_below_25pct_bypass": [
+      "claude-sonnet-4-6"
+    ],
+    "models_below_1pct_fr": [],
+    "models_below_25_bypass_AND_below_1_fr": []
+  }
+}
+

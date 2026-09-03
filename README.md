@@ -2,7 +2,7 @@
 
 <p align="center">
     <picture>
-        <img src="https://raw.githubusercontent.com/100xPercent/pop-pay-python/main/project_banner.png" alt="HangPay — Runtime Security Layer for AI Agents" width="800">
+        <img src="https://raw.githubusercontent.com/Armour007/HangPay/main/assets/hangpay-banner.svg" alt="HangPay — Runtime Security Layer for AI Agents" width="1000">
     </picture>
 </p>
 

@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
+  <defs>
+    <!-- Gradient backgrounds -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#02042B;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0A0F2E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#02042B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="razorpayGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#02042B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1A1F3E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00D4FF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0E7FF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="orbGradient1" cx="30%" cy="20%" r="60%">
+      <stop offset="0%" style="stop-color:#00D4FF;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#00D4FF;stop-opacity:0" />
+    </radialGradient>
+    <radialGradient id="orbGradient2" cx="70%" cy="80%" r="50%">
+      <stop offset="0%" style="stop-color:#7C3AED;stop-opacity:0.12" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:0" />
+    </radialGradient>
+    <radialGradient id="orbGradient3" cx="50%" cy="50%" r="40%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:0.08" />
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="300" fill="url(#bgGradient)"/>
+
+  <!-- Ambient orbs -->
+  <circle cx="180" cy="60" r="200" fill="url(#orbGradient1)" />
+  <circle cx="950" cy="240" r="180" fill="url(#orbGradient2)" />
+  <circle cx="600" cy="150" r="300" fill="url(#orbGradient3)" />
+
+  <!-- Subtle grid pattern -->
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+    <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(0, 212, 255, 0.03)" stroke-width="0.5"/>
+  </pattern>
+  <rect width="1200" height="300" fill="url(#grid)" />
+
+  <!-- Left accent bar -->
+  <rect x="80" y="60" width="6" height="180" rx="3" fill="url(#accentGradient)" filter="url(#glow)" opacity="0.9"/>
+
+  <!-- Main title -->
+  <text x="110" y="135" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" 
+        font-size="48" font-weight="800" fill="url(#textGradient)" letter-spacing="-1.2">
+    HangPay
+  </text>
+
+  <!-- Razorpay badge -->
+  <g transform="translate(110, 155)">
+    <rect x="0" y="0" width="140" height="28" rx="14" fill="url(#accentGradient)" filter="url(#softGlow)" opacity="0.95"/>
+    <text x="70" y="19" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" 
+          font-size="13" font-weight="700" fill="#02042B" text-anchor="middle" letter-spacing="0.5">
+      Powered by Razorpay
+    </text>
+  </g>
+
+  <!-- Subtitle -->
+  <text x="110" y="210" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" 
+        font-size="18" font-weight="400" fill="#94A3B8" letter-spacing="0.2">
+    Runtime Security Layer for AI Agent Commerce
+  </text>
+
+  <!-- Feature pills -->
+  <g transform="translate(110, 235)">
+    <g class="pill" transform="translate(0, 0)">
+      <rect x="0" y="0" width="135" height="32" rx="16" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(0, 212, 255, 0.3)" stroke-width="1" rx="16"/>
+      <text x="67.5" y="21" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#00D4FF" text-anchor="middle">CDP Injection</text>
+    </g>
+    <g class="pill" transform="translate(145, 0)">
+      <rect x="0" y="0" width="135" height="32" rx="16" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(124, 58, 237, 0.3)" stroke-width="1" rx="16"/>
+      <text x="67.5" y="21" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#A78BFA" text-anchor="middle">Context Isolation</text>
+    </g>
+    <g class="pill" transform="translate(290, 0)">
+      <rect x="0" y="0" width="135" height="32" rx="16" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1" rx="16"/>
+      <text x="67.5" y="21" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#FCD34D" text-anchor="middle">Razorpay Native</text>
+    </g>
+    <g class="pill" transform="translate(435, 0)">
+      <rect x="0" y="0" width="135" height="32" rx="16" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(34, 197, 94, 0.3)" stroke-width="1" rx="16"/>
+      <text x="67.5" y="21" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#4ADE80" text-anchor="middle">PCI DSS 3.3</text>
+    </g>
+  </g>
+
+  <!-- Right side: Architecture diagram -->
+  <g transform="translate(780, 40)">
+    <!-- Diagram title -->
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#94A3B8" text-anchor="start">ARCHITECTURE</text>
+
+    <!-- Agent box -->
+    <g class="node" transform="translate(0, 30)">
+      <rect x="0" y="0" width="180" height="60" rx="10" fill="rgba(15, 23, 42, 0.9)" stroke="rgba(0, 212, 255, 0.4)" stroke-width="1.5"/>
+      <text x="90" y="22" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#00D4FF" text-anchor="middle">AI Agent</text>
+      <text x="90" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#64748B" text-anchor="middle">Claude / Cursor / Custom</text>
+    </g>
+
+    <!-- Arrow 1 -->
+    <path d="M 180 60 L 240 60" fill="none" stroke="url(#accentGradient)" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowhead)"/>
+
+    <!-- MCP Server box -->
+    <g class="node" transform="translate(250, 20)">
+      <rect x="0" y="0" width="220" height="100" rx="12" fill="rgba(15, 23, 42, 0.95)" stroke="rgba(124, 58, 237, 0.5)" stroke-width="2" filter="url(#softGlow)"/>
+      <text x="110" y="20" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#A78BFA" text-anchor="middle">MCP Server</text>
+      <text x="110" y="40" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">HangPay Core</text>
+      <text x="110" y="60" font-family="system-ui, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Guardrails • Policy • Vault</text>
+      <text x="110" y="80" font-family="system-ui, sans-serif" font-size="9" fill="#00D4FF" text-anchor="middle">stdio transport</text>
+    </g>
+
+    <!-- Arrow 2 -->
+    <path d="M 470 70 L 520 70" fill="none" stroke="url(#accentGradient)" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowhead)"/>
+
+    <!-- Provider box -->
+    <g class="node" transform="translate(530, 20)">
+      <rect x="0" y="0" width="220" height="100" rx="12" fill="rgba(15, 23, 42, 0.95)" stroke="rgba(245, 158, 11, 0.5)" stroke-width="2" filter="url(#softGlow)"/>
+      <text x="110" y="20" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#F59E0B" text-anchor="middle">PROVIDER</text>
+      <text x="110" y="40" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#F59E0B" text-anchor="middle">RAZORPAY</text>
+      <text x="110" y="60" font-family="system-ui, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Payment Links • RazorpayX</text>
+      <text x="110" y="80" font-family="system-ui, sans-serif" font-size="9" fill="#F59E0B" text-anchor="middle">Webhooks • Payouts</text>
+    </g>
+
+    <!-- Arrow 3 -->
+    <path d="M 750 70 L 810 70" fill="none" stroke="url(#accentGradient)" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowhead)"/>
+
+    <!-- Browser box -->
+    <g class="node" transform="translate(820, 30)">
+      <rect x="0" y="0" width="180" height="60" rx="10" fill="rgba(15, 23, 42, 0.9)" stroke="rgba(34, 197, 94, 0.4)" stroke-width="1.5"/>
+      <text x="90" y="22" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#22C55E" text-anchor="middle">Chrome (CDP)</text>
+      <text x="90" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#64748B" text-anchor="middle">DOM Injection</text>
+    </g>
+
+    <!-- Arrowhead definition -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="url(#accentGradient)" />
+      </marker>
+    </defs>
+
+    <!-- Security badges below diagram -->
+    <g transform="translate(0, 140)">
+      <text x="0" y="0" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748B">Security Primitives</text>
+      <g transform="translate(0, 20)">
+        <g class="badge" transform="translate(0, 0)">
+          <rect x="0" y="0" width="160" height="24" rx="12" fill="rgba(0, 212, 255, 0.1)" stroke="rgba(0, 212, 255, 0.3)" stroke-width="1"/>
+          <text x="80" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#00D4FF" text-anchor="middle">Context Isolation</text>
+        </g>
+        <g class="badge" transform="translate(170, 0)">
+          <rect x="0" y="0" width="140" height="24" rx="12" fill="rgba(124, 58, 237, 0.1)" stroke="rgba(124, 58, 237, 0.3)" stroke-width="1"/>
+          <text x="70" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#A78BFA" text-anchor="middle">TOCTOU Guard</text>
+        </g>
+        <g class="badge" transform="translate(320, 0)">
+          <rect x="0" y="0" width="150" height="24" rx="12" fill="rgba(34, 197, 94, 0.1)" stroke="rgba(34, 197, 94, 0.3)" stroke-width="1"/>
+          <text x="75" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#4ADE80" text-anchor="middle">PCI DSS 3.3</text>
+        </g>
+      </g>
+      <g transform="translate(0, 35)">
+        <g class="badge" transform="translate(0, 0)">
+          <rect x="0" y="0" width="170" height="24" rx="12" fill="rgba(245, 158, 11, 0.1)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1"/>
+          <text x="85" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#F59E0B" text-anchor="middle">Razorpay Native</text>
+        </g>
+        <g class="badge" transform="translate(180, 0)">
+          <rect x="0" y="0" width="150" height="24" rx="12" fill="rgba(124, 58, 237, 0.1)" stroke="rgba(124, 58, 237, 0.3)" stroke-width="1"/>
+          <text x="75" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#A78BFA" text-anchor="middle">Rust + TS Crypto</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom tagline -->
+  <text x="600" y="285" font-family="system-ui, sans-serif" font-size="11" font-weight="500" fill="#475569" text-anchor="middle" opacity="0.7">
+    It only takes 0.1% of hallucination to drain 100% of your wallet — HangPay makes sure that never happens.
+  </text>
+
+  <!-- Buildathon badge -->
+  <g transform="translate(1020, 260)">
+    <rect x="0" y="0" width="150" height="30" rx="15" fill="url(#accentGradient)" filter="url(#softGlow)"/>
+    <text x="75" y="20" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#02042B" text-anchor="middle">Razorpay Buildathon 2026</text>
+  </g>
+</svg>

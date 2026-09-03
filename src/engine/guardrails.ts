@@ -102,7 +102,7 @@ export class GuardrailEngine {
       }
 
       // User-defined extra keywords from env
-      const extraKeywordsRaw = process.env.POP_EXTRA_BLOCK_KEYWORDS ?? "";
+      const extraKeywordsRaw = process.env.HANGPAY_EXTRA_BLOCK_KEYWORDS ?? "";
       const extraKeywords = extraKeywordsRaw
         .split(",")
         .map((kw) => kw.trim().toLowerCase())

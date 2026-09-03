@@ -37,7 +37,7 @@ export class LithicProvider implements VirtualCardProvider {
     // });
     throw new Error(
       "LithicProvider is a skeleton — real Lithic API integration not yet implemented. " +
-      "Set POP_PROVIDER=stripe or POP_PROVIDER=byoc for working providers."
+      "Set HANGPAY_PROVIDER=razorpay or HANGPAY_PROVIDER=stripe or HANGPAY_PROVIDER=byoc for working providers."
     );
   }
 }

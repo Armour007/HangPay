@@ -244,7 +244,7 @@ export class PopStateTracker {
    *   - "approved"          — request passed all checks and was fulfilled
    *   - "rejected_vendor"   — vendor not in allowlist (and blocking enabled)
    *   - "rejected_security" — security scan blocked the request
-   *   - "blocked_bypassed"  — vendor block bypassed via POP_PURCHASER_INFO_BLOCKING=false
+   *   - "blocked_bypassed"  — vendor block bypassed via HANGPAY_PURCHASER_INFO_BLOCKING=false
    *   - "error_injector"    — injector unavailable (CDP down, lazy-init failed)
    *   - "error_fields"      — billing fields not found on page
    *   - "unknown"           — legacy row from before v0.5.2 (pre-outcome column)

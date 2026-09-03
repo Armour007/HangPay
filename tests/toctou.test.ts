@@ -76,11 +76,11 @@ describe("verifyDomainToctou – extended", () => {
 
   // User-defined payment processors
   afterEach(() => {
-    delete process.env.POP_ALLOWED_PAYMENT_PROCESSORS;
+    delete process.env.HANGPAY_ALLOWED_PAYMENT_PROCESSORS;
   });
 
   it("passes user-defined payment processor domain", () => {
-    process.env.POP_ALLOWED_PAYMENT_PROCESSORS = '["custom-pay.com"]';
+    process.env.HANGPAY_ALLOWED_PAYMENT_PROCESSORS = '["custom-pay.com"]';
     const result = verifyDomainToctou("https://custom-pay.com/checkout", "SomeVendor");
     expect(result).toBeNull();
   });

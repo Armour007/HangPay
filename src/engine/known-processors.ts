@@ -5,7 +5,7 @@
  * guard treats it as a pass — the vendor intent was already approved by the
  * policy gate, and these processors are independently trusted infrastructure.
  *
- * Users can extend via POP_ALLOWED_PAYMENT_PROCESSORS in .env.
+ * Users can extend via HANGPAY_ALLOWED_PAYMENT_PROCESSORS in .env.
  */
 
 export const KNOWN_PAYMENT_PROCESSORS = new Set([

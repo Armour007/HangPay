@@ -207,7 +207,7 @@ function checkEnvVars(cat: RemediationCatalog): DoctorCheck {
     }
     // JSON-array envs: format-validate only (parseable?). Report count — bounded
     // metadata, never contents. Secrets never traverse this branch.
-    if (n === "POP_ALLOWED_CATEGORIES" || n === "POP_ALLOWED_PAYMENT_PROCESSORS") {
+    if (n === "HANGPAY_ALLOWED_CATEGORIES" || n === "HANGPAY_ALLOWED_PAYMENT_PROCESSORS") {
       try {
         const v = JSON.parse(raw);
         if (Array.isArray(v)) summary.push(`${n}: present (${v.length} entries)`);
@@ -221,7 +221,7 @@ function checkEnvVars(cat: RemediationCatalog): DoctorCheck {
       }
       continue;
     }
-    // All other vars (including POP_LLM_* secrets): presence-only, zero signal
+    // All other vars (including HANGPAY_LLM_* secrets): presence-only, zero signal
     // about content. No length, no prefix, no hash.
     summary.push(`${n}: present (hidden)`);
   }
@@ -240,19 +240,19 @@ function checkPolicyConfig(cat: RemediationCatalog): DoctorCheck {
   if (rawCats !== undefined) {
     try {
       const v = JSON.parse(rawCats);
-      if (!Array.isArray(v)) issues.push("POP_ALLOWED_CATEGORIES must be JSON array");
+      if (!Array.isArray(v)) issues.push("HANGPAY_ALLOWED_CATEGORIES must be JSON array");
       else catsCount = v.length;
     } catch {
-      issues.push("POP_ALLOWED_CATEGORIES not valid JSON");
+      issues.push("HANGPAY_ALLOWED_CATEGORIES not valid JSON");
     }
   }
   if (rawProcs !== undefined) {
     try {
       const v = JSON.parse(rawProcs);
-      if (!Array.isArray(v)) issues.push("POP_ALLOWED_PAYMENT_PROCESSORS must be JSON array");
+      if (!Array.isArray(v)) issues.push("HANGPAY_ALLOWED_PAYMENT_PROCESSORS must be JSON array");
       else procsCount = v.length;
     } catch {
-      issues.push("POP_ALLOWED_PAYMENT_PROCESSORS not valid JSON");
+      issues.push("HANGPAY_ALLOWED_PAYMENT_PROCESSORS not valid JSON");
     }
   }
   if (issues.length > 0) return makeCheck("policy_config", "Policy config", "fail", issues.join("; "), cat);
@@ -292,7 +292,7 @@ async function checkLayer2Probe(cat: RemediationCatalog): Promise<DoctorCheck> {
   const baseUrl = process.env.HANGPAY_LLM_BASE_URL ?? "https://api.openai.com";
   const model = process.env.HANGPAY_LLM_MODEL ?? "gpt-4o-mini";
   if (!apiKey) {
-    return makeCheck("layer2_probe", "Layer 2 (LLM) probe", "warn", "POP_LLM_API_KEY unset — LLM guardrail disabled", cat);
+    return makeCheck("layer2_probe", "Layer 2 (LLM) probe", "warn", "HANGPAY_LLM_API_KEY unset — LLM guardrail disabled", cat);
   }
   // Reachability-only probe: never sends the key, just a TCP/TLS hello to host.
   // We do NOT issue a real auth request because doctor must not burn quota.

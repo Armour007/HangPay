@@ -250,7 +250,7 @@ export function readVaultMode(): VaultMode {
 /**
  * F3: OSS salt consent gate. machine-oss vaults use a public salt that an
  * agent with shell execution could derive from public information. Require
- * explicit opt-in via POP_ACCEPT_OSS_SALT=1. Passphrase / machine-hardened /
+ * explicit opt-in via HANGPAY_ACCEPT_OSS_SALT=1. Passphrase / machine-hardened /
  * unknown bypass. Exported for direct testing.
  */
 export function enforceOssSaltConsent(vaultMode: VaultMode): void {

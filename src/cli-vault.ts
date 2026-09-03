@@ -103,7 +103,7 @@ async function cmdInitVault(): Promise<void> {
           "Proceed with OSS public salt? This offers weaker protection than --passphrase. [y/N]: ",
         );
         if (ack.toLowerCase() !== "y") {
-          console.log("Aborted. Re-run with --passphrase, or set POP_ACCEPT_OSS_SALT=1.");
+          console.log("Aborted. Re-run with --passphrase, or set HANGPAY_ACCEPT_OSS_SALT=1.");
           process.exit(1);
         }
       } else {

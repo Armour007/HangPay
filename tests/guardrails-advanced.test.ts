@@ -132,7 +132,7 @@ describe("GuardrailEngine – extra block keywords", () => {
   });
 
   it("rejects reasoning containing custom blocked keyword", async () => {
-    process.env.POP_EXTRA_BLOCK_KEYWORDS = "badword,suspicious";
+    process.env.HANGPAY_EXTRA_BLOCK_KEYWORDS = "badword,suspicious";
     const [approved, reason] = await engine.evaluateIntent(
       {
         agentId: "test",
@@ -148,7 +148,7 @@ describe("GuardrailEngine – extra block keywords", () => {
   });
 
   it("rejects 'suspicious' keyword", async () => {
-    process.env.POP_EXTRA_BLOCK_KEYWORDS = "badword,suspicious";
+    process.env.HANGPAY_EXTRA_BLOCK_KEYWORDS = "badword,suspicious";
     const [approved] = await engine.evaluateIntent(
       {
         agentId: "test",

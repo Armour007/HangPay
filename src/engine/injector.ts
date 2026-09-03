@@ -14,7 +14,7 @@ import { KNOWN_PAYMENT_PROCESSORS } from "./known-processors.js";
 // ---------------------------------------------------------------------------
 // Structured logger
 // ---------------------------------------------------------------------------
-const LOG_LEVEL = (process.env.POP_LOG_LEVEL ?? "info").toLowerCase();
+const LOG_LEVEL = (process.env.HANGPAY_LOG_LEVEL ?? "info").toLowerCase();
 const LEVELS: Record<string, number> = { debug: 0, info: 1, warn: 2, error: 3 };
 
 // S0.7 F5: redact runs of 12–19 consecutive digits (PAN range) and isolated
@@ -385,7 +385,7 @@ export function verifyDomainToctou(
     let userProcessors: string[] = [];
     try {
       userProcessors = JSON.parse(
-        process.env.POP_ALLOWED_PAYMENT_PROCESSORS ?? "[]"
+        process.env.HANGPAY_ALLOWED_PAYMENT_PROCESSORS ?? "[]"
       );
     } catch {}
     const allProcessors = new Set([...KNOWN_PAYMENT_PROCESSORS, ...userProcessors]);
@@ -497,7 +497,7 @@ export class PopBrowserInjector {
       await page.bringToFront();
 
       // S0.7 F6(c): default "before" — agent never sees plaintext in DOM.
-      const blackoutMode = (process.env.POP_BLACKOUT_MODE ?? "before").toLowerCase();
+      const blackoutMode = (process.env.HANGPAY_BLACKOUT_MODE ?? "before").toLowerCase();
       if (blackoutMode === "before") {
         await this.enableBlackout(page);
       }
@@ -910,16 +910,16 @@ export class PopBrowserInjector {
 
   private loadBillingFromEnv(): BillingInfo {
     return {
-      firstName: (process.env.POP_BILLING_FIRST_NAME ?? "").trim(),
-      lastName: (process.env.POP_BILLING_LAST_NAME ?? "").trim(),
-      street: (process.env.POP_BILLING_STREET ?? "").trim(),
-      city: (process.env.POP_BILLING_CITY ?? "").trim(),
-      state: (process.env.POP_BILLING_STATE ?? "").trim(),
-      country: (process.env.POP_BILLING_COUNTRY ?? "").trim(),
-      zip: (process.env.POP_BILLING_ZIP ?? "").trim(),
-      email: (process.env.POP_BILLING_EMAIL ?? "").trim(),
-      phone: (process.env.POP_BILLING_PHONE ?? "").trim(),
-      phoneCountryCode: (process.env.POP_BILLING_PHONE_COUNTRY_CODE ?? "").trim(),
+      firstName: (process.env.HANGPAY_BILLING_FIRST_NAME ?? "").trim(),
+      lastName: (process.env.HANGPAY_BILLING_LAST_NAME ?? "").trim(),
+      street: (process.env.HANGPAY_BILLING_STREET ?? "").trim(),
+      city: (process.env.HANGPAY_BILLING_CITY ?? "").trim(),
+      state: (process.env.HANGPAY_BILLING_STATE ?? "").trim(),
+      country: (process.env.HANGPAY_BILLING_COUNTRY ?? "").trim(),
+      zip: (process.env.HANGPAY_BILLING_ZIP ?? "").trim(),
+      email: (process.env.HANGPAY_BILLING_EMAIL ?? "").trim(),
+      phone: (process.env.HANGPAY_BILLING_PHONE ?? "").trim(),
+      phoneCountryCode: (process.env.HANGPAY_BILLING_PHONE_COUNTRY_CODE ?? "").trim(),
     };
   }
 }

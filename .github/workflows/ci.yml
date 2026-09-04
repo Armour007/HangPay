@@ -22,6 +22,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - uses: dtolnay/rust-toolchain@stable
       - run: npm ci
+      - run: cd native && npm ci
       - run: npm run build:native
       - run: npm run build
       - run: npm test

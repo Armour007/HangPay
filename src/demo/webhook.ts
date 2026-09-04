@@ -66,14 +66,14 @@ export async function processRazorpayWebhook(
   const paymentLinkId = paymentLinkEntity.id;
   const razorpayStatus = paymentLinkEntity.status; // "paid" | "expired" | "cancelled"
 
-  // Find the seal by payment_link_id (stored in metadata)
+  // Find the seal by payment_link_id (stored in razorpay_payment_link_id column)
   const db = stateTracker.getDb();
   const sealRow = db
     .prepare(
-      `SELECT seal_id, vendor, amount, status, metadata FROM issued_seals 
-       WHERE json_extract(metadata, '$.payment_link_id') = ?`
+      `SELECT seal_id, vendor, amount, status, razorpay_payment_link_id FROM issued_seals 
+       WHERE razorpay_payment_link_id = ?`
     )
-    .get(paymentLinkId) as { seal_id: string; vendor: string; amount: number; status: string; metadata: string | null } | undefined;
+    .get(paymentLinkId) as { seal_id: string; vendor: string; amount: number; status: string; razorpay_payment_link_id: string | null } | undefined;
 
   if (!sealRow) {
     // Seal not found — could be a race condition or invalid payment link

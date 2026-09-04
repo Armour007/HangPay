@@ -20,13 +20,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+      - uses: dtolnay/rust-toolchain@stable
       - run: npm ci
+      - run: npm run build:native
       - run: npm run build
       - run: npm test
 
   # PR-only smoke build with no secrets — validates that build.rs + lib.rs's
-  # include!(...) path compiles cleanly in OSS mode (POP_VAULT_COMPILED_SALT
-  # unset → build.rs emits None/None). The hardened release build runs in
+  # include!(...) path compiles cleanly in OSS mode (HANGPAY_VAULT_COMPILED_SALT
+  # unset — build.rs emits None/None). The hardened release build runs in
   # publish.yml's `build-native-release` job on v* tags (F10).
   build-native-smoke:
     if: github.event_name == 'pull_request'

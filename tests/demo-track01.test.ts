@@ -27,7 +27,7 @@ vi.mock("razorpay", () => {
       payouts: {
         create: vi.fn(),
       },
-    }),
+    })
   };
 });
 

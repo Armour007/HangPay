@@ -189,13 +189,27 @@ export class RazorpayProvider implements VirtualCardProvider {
     webhookSecret: string
   ): boolean {
     const crypto = require("node:crypto");
+    // Razorpay sends signature as base64 in x-razorpay-signature header
+    // Compute expected signature as base64
     const expectedSignature = crypto
       .createHmac("sha256", webhookSecret)
       .update(payload)
-      .digest("hex");
-    return crypto.timingSafeEqual(
-      Buffer.from(signature),
-      Buffer.from(expectedSignature)
-    );
+      .digest("base64");
+
+    // Compare base64 strings directly (constant-time via timingSafeEqual on buffers)
+    let signatureBuffer: Buffer;
+    let expectedBuffer: Buffer;
+    try {
+      signatureBuffer = Buffer.from(signature, "base64");
+      expectedBuffer = Buffer.from(expectedSignature, "base64");
+    } catch {
+      // If not valid base64, try hex
+      signatureBuffer = Buffer.from(signature, "hex");
+      expectedBuffer = Buffer.from(expectedSignature, "hex");
+    }
+    if (signatureBuffer.length !== expectedBuffer.length) {
+      return false;
+    }
+    return crypto.timingSafeEqual(signatureBuffer, expectedBuffer);
   }
 }

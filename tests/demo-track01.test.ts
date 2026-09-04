@@ -8,26 +8,27 @@ import { join } from "node:path";
 
 // Mock the razorpay module at the top level
 vi.mock("razorpay", () => {
+  const mockRazorpay = {
+    contacts: {
+      create: vi.fn().mockResolvedValue({ id: "contact_123" }),
+    },
+    paymentLink: {
+      create: vi.fn().mockResolvedValue({
+        id: "plink_test123",
+        short_url: "https://rzp.io/i/test123",
+        status: "pending",
+      }),
+      fetch: vi.fn().mockResolvedValue({ id: "plink_test123", status: "paid" }),
+    },
+    fundAccounts: {
+      create: vi.fn(),
+    },
+    payouts: {
+      create: vi.fn(),
+    },
+  };
   return {
-    default: vi.fn().mockImplementation(() => ({
-      contacts: {
-        create: vi.fn().mockResolvedValue({ id: "contact_123" }),
-      },
-      paymentLink: {
-        create: vi.fn().mockResolvedValue({
-          id: "plink_test123",
-          short_url: "https://rzp.io/i/test123",
-          status: "pending",
-        }),
-        fetch: vi.fn().mockResolvedValue({ id: "plink_test123", status: "paid" }),
-      },
-      fundAccounts: {
-        create: vi.fn(),
-      },
-      payouts: {
-        create: vi.fn(),
-      },
-    })
+    default: vi.fn().mockImplementation(() => mockRazorpay),
   };
 });
 
@@ -243,7 +244,7 @@ describe("Razorpay Webhook Processing", () => {
     expect(audit.outcome).toBe("paid");
 
     tracker.close();
-  }
+  });
 
   it("rejects invalid webhook signature", async () => {
     const payload = JSON.stringify({
@@ -296,7 +297,7 @@ describe("Razorpay Webhook Processing", () => {
       event: "payment_link.paid",
       payload: { payment_link: { entity: { id: "plink_idem", status: "paid", amount: 10000, currency: "INR" } } },
     });
-    const signature = crypto2.createHmac("sha256", webhookSecret).update(webhookPayload).digest("hex");
+    const signature = crypto2.createHmac("sha256", webhookSecret).update(JSON.stringify({ event: "payment_link.paid", payload: { payment_link: { entity: { id: "plink_idem", status: "paid", amount: 10000, currency: "INR" } } } })).digest("hex");
 
     const result = await processRazorpayWebhook(webhookPayload, signature, webhookSecret, tracker);
 

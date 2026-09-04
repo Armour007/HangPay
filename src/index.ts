@@ -15,6 +15,9 @@ export type { VirtualCardProvider } from "./providers/base.js";
 export { MockStripeProvider } from "./providers/stripe-mock.js";
 export { LocalVaultProvider } from "./providers/byoc-local.js";
 export { StripeIssuingProvider } from "./providers/stripe-real.js";
+export { RazorpayProvider } from "./providers/razorpay.js";
+export { NOVA_GEAR_MERCHANT, getProductById, getAllProducts, getMerchantName, getMerchantId } from "./demo/merchant.js";
+export { processRazorpayWebhook, pollPaymentLinkStatus, type WebhookEvent, type WebhookResult } from "./demo/webhook.js";
 export {
   vaultExists,
   loadVault,

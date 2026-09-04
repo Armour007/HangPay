@@ -115,6 +115,9 @@ export class PopClient {
       seal.status = "Pending";
     }
 
+    // Extract Razorpay payment link ID from metadata if present
+    const razorpayPaymentLinkId = seal.metadata?.payment_link_id as string | undefined;
+
     this.stateTracker.recordSeal(
       seal.sealId,
       seal.authorizedAmount,
@@ -123,12 +126,96 @@ export class PopClient {
       maskedCard,
       seal.expirationDate,
       seal.rejectionReason,
+      razorpayPaymentLinkId ?? null
     );
 
     if (seal.status !== "Rejected") {
       this.stateTracker.addSpend(intent.requestedAmount);
     }
     return seal;
+  }
+
+  /**
+   * Poll Razorpay payment link status until paid, expired, cancelled, or timeout.
+   * This is a fallback for when webhook is not received.
+   */
+  async pollPaymentLinkStatus(
+    sealId: string,
+    paymentLinkId: string,
+    maxAttempts: number = 30,
+    intervalMs: number = 5000
+  ): Promise<"paid" | "expired" | "cancelled" | "timeout" | "error"> {
+    // Check if provider is RazorpayProvider
+    const provider = this.provider as any;
+    if (typeof provider.fetchPaymentLinkStatus !== "function") {
+      return "error";
+    }
+
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+      try {
+        const status = await provider.fetchPaymentLinkStatus(paymentLinkId);
+        
+        if (status === "paid") {
+          this.stateTracker.updateSealStatus(sealId, "Paid");
+          await this.recordPaymentCompletion(sealId, "paid", paymentLinkId);
+          return "paid";
+        }
+        if (status === "expired") {
+          this.stateTracker.updateSealStatus(sealId, "Expired");
+          await this.recordPaymentCompletion(sealId, "expired", paymentLinkId);
+          return "expired";
+        }
+        if (status === "cancelled") {
+          this.stateTracker.updateSealStatus(sealId, "Cancelled");
+          await this.recordPaymentCompletion(sealId, "cancelled", paymentLinkId);
+          return "cancelled";
+        }
+        // pending -> continue polling
+      } catch (e) {
+        console.error(`[PopClient] Error polling payment link ${paymentLinkId}:`, e);
+      }
+      
+      await new Promise((resolve) => setTimeout(resolve, intervalMs));
+    }
+    return "timeout";
+  }
+
+  /**
+   * Record payment completion in audit trail and update seal metadata.
+   */
+  private async recordPaymentCompletion(
+    sealId: string,
+    outcome: "paid" | "expired" | "cancelled",
+    paymentLinkId: string
+  ): Promise<void> {
+    const statusMap: Record<string, "Paid" | "Expired" | "Cancelled"> = {
+      paid: "Paid",
+      expired: "Expired",
+      cancelled: "Cancelled",
+    };
+    
+    const newStatus = statusMap[outcome];
+    this.stateTracker.updateSealStatus(sealId, newStatus);
+    
+    // Update Razorpay-specific metadata
+    const now = new Date().toISOString();
+    this.stateTracker.getDb()
+      .prepare(
+        `UPDATE issued_seals SET 
+          razorpay_webhook_verified_at = ?,
+          razorpay_webhook_event = ?
+        WHERE seal_id = ?`
+      )
+      .run(new Date().toISOString(), `payment_link.${outcome}`, sealId);
+    
+    // Record audit event
+    this.stateTracker.recordAuditEvent(
+      "payment_webhook",
+      null, // vendor will be looked up from seal
+      `Razorpay payment link ${outcome}`,
+      outcome,
+      null
+    );
   }
 
   async executePayment(sealId: string, amount: number): Promise<{ status: string; reason?: string; amount?: number }> {

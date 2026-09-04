@@ -53,7 +53,7 @@ export class RazorpayProvider implements VirtualCardProvider {
         amount: Math.round(intent.requestedAmount * 100), // Razorpay expects paise
         currency: "INR",
         accept_partial: false,
-        description: `HangPay virtual card for ${intent.targetVendor}`,
+        description: `Nova Gear: ${intent.targetVendor}`,
         customer: {
           name: "HangPay Agent",
           contact: "9999999999",
@@ -102,6 +102,32 @@ export class RazorpayProvider implements VirtualCardProvider {
         status: "Rejected",
         rejectionReason: String(e.message ?? e),
       };
+    }
+  }
+
+  /**
+   * Fetch payment link status from Razorpay for polling fallback.
+   * Returns the payment link status: "paid" | "expired" | "cancelled" | "pending"
+   */
+  async fetchPaymentLinkStatus(paymentLinkId: string): Promise<"paid" | "expired" | "cancelled" | "pending" | "error"> {
+    try {
+      const link = await this.razorpay.paymentLink.fetch(paymentLinkId);
+      return link.status as "paid" | "expired" | "cancelled" | "pending";
+    } catch (e: any) {
+      console.error(`[RazorpayProvider] Failed to fetch payment link ${paymentLinkId}:`, e);
+      return "error";
+    }
+  }
+
+  /**
+   * Fetch full payment link details from Razorpay.
+   */
+  async fetchPaymentLink(paymentLinkId: string): Promise<any> {
+    try {
+      return await this.razorpay.paymentLink.fetch(paymentLinkId);
+    } catch (e: any) {
+      console.error(`[RazorpayProvider] Failed to fetch payment link ${paymentLinkId}:`, e);
+      return null;
     }
   }
 

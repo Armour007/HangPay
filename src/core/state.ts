@@ -21,6 +21,11 @@ export class PopStateTracker {
     this.applyOwnerOnlyPermissions(dbPath);
   }
 
+  /** Expose DB for internal use (webhooks, migrations) */
+  getDb(): Database.Database {
+    return this.db;
+  }
+
   private applyOwnerOnlyPermissions(dbPath: string): void {
     if (dbPath === ":memory:" || process.platform === "win32") return;
     for (const p of [dbPath, `${dbPath}-wal`, `${dbPath}-shm`]) {
@@ -56,7 +61,13 @@ export class PopStateTracker {
         masked_card TEXT,
         expiration_date TEXT,
         timestamp TEXT NOT NULL,
-        rejection_reason TEXT
+        rejection_reason TEXT,
+        metadata TEXT,
+        razorpay_payment_link_id TEXT,
+        razorpay_payment_id TEXT,
+        razorpay_webhook_verified_at TEXT,
+        razorpay_webhook_event TEXT,
+        razorpay_webhook_idempotency_key TEXT
       )
     `);
     this.db.exec(`
@@ -160,6 +171,32 @@ export class PopStateTracker {
       this.db.exec("VACUUM");
       this.db.pragma("user_version = 2");
     }
+
+    // v0.6.0 — Track 01: Add Razorpay payment tracking columns
+    // Idempotent: check PRAGMA before ALTERing.
+    columns = this.db.prepare("PRAGMA table_info(issued_seals)").all() as any[];
+    columnNames = new Set(columns.map((c) => c.name));
+
+    // Track Razorpay payment link ID from RazorpayProvider
+    if (!columnNames.has("razorpay_payment_link_id")) {
+      this.db.exec("ALTER TABLE issued_seals ADD COLUMN razorpay_payment_link_id TEXT");
+    }
+    // Razorpay payment ID (from webhook)
+    if (!columnNames.has("razorpay_payment_id")) {
+      this.db.exec("ALTER TABLE issued_seals ADD COLUMN razorpay_payment_id TEXT");
+    }
+    // Webhook verified timestamp
+    if (!columnNames.has("razorpay_webhook_verified_at")) {
+      this.db.exec("ALTER TABLE issued_seals ADD COLUMN razorpay_webhook_verified_at TEXT");
+    }
+    // Webhook event type that triggered the update
+    if (!columnNames.has("razorpay_webhook_event")) {
+      this.db.exec("ALTER TABLE issued_seals ADD COLUMN razorpay_webhook_event TEXT");
+    }
+    // Idempotency key for webhook deduplication
+    if (!columnNames.has("razorpay_webhook_idempotency_key")) {
+      this.db.exec("ALTER TABLE issued_seals ADD COLUMN razorpay_webhook_idempotency_key TEXT");
+    }
   }
 
   private getTodaySpent(): number {
@@ -194,7 +231,8 @@ export class PopStateTracker {
     status: string = "Issued",
     maskedCard: string | null = null,
     expirationDate: string | null = null,
-    rejectionReason: string | null = null
+    rejectionReason: string | null = null,
+    razorpayPaymentLinkId: string | null = null
   ): void {
     // RT-2 R2 Fix 4: masked_card is a PCI-DSS 3.3 permitted last-4 projection
     // (already redacted). Prior AES-GCM-over-hostname-HMAC added no meaningful
@@ -203,10 +241,10 @@ export class PopStateTracker {
     const timestamp = this.utcNowIso();
     this.db
       .prepare(
-        `INSERT INTO issued_seals (seal_id, amount, vendor, status, masked_card, expiration_date, timestamp, rejection_reason)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+        `INSERT INTO issued_seals (seal_id, amount, vendor, status, masked_card, expiration_date, timestamp, rejection_reason, razorpay_payment_link_id)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
       )
-      .run(sealId, amount, vendor, status, maskedCard, expirationDate, timestamp, rejectionReason);
+      .run(sealId, amount, vendor, status, maskedCard, expirationDate, timestamp, rejectionReason, razorpayPaymentLinkId);
   }
 
   getSealMaskedCard(sealId: string): string {

@@ -26,7 +26,7 @@ export interface VirtualSeal {
   cvv: string | null;
   expirationDate: string | null;
   authorizedAmount: number;
-  status: "Issued" | "Rejected" | "Revoked" | "Used" | "Pending";
+  status: "Issued" | "Rejected" | "Revoked" | "Used" | "Pending" | "Paid" | "Expired" | "Cancelled";
   rejectionReason: string | null;
   metadata?: Record<string, unknown>;
 }

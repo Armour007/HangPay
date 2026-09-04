@@ -729,7 +729,226 @@ server.tool(
   }
 );
 
-// S0.7 F6(A): transport dispatch — pipe (stdio, default) or tcp (HTTP+Bearer).
+  // Track 01 Demo: Nova Gear Merchant Catalog
+  // Provides product discovery for the demo merchant "Nova Gear"
+  server.tool(
+    "request_demo_catalog",
+    "Get the Nova Gear demo merchant product catalog. Use this to discover available products before purchasing.",
+    {},
+    async () => {
+      const products = [
+        {
+          id: "safety-hoodie",
+          name: "AI Safety Hoodie",
+          price: 1499,
+          currency: "INR",
+          description: "Premium cotton hoodie with 'AI Safety First' embroidery. Unisex, sizes S-XXL.",
+        },
+        {
+          id: "desk-kit",
+          name: "Developer Desk Kit",
+          price: 899,
+          currency: "INR",
+          description: "Curated desk essentials: cable organizer, wrist rest, monitor riser, cable ties.",
+        },
+        {
+          id: "sticker-pack",
+          name: "Sticker Pack",
+          price: 199,
+          currency: "INR",
+          description: "10 vinyl stickers: AI safety, Rust, TypeScript, Razorpay, HangPay logos.",
+        },
+      ];
+
+      return {
+        content: [{
+          type: "text" as const,
+          text: `🏪 Nova Gear — Demo Merchant Catalog\n\n${products.map(p => 
+  `• ${p.name} (${p.id})\n  Price: ₹${p.price.toLocaleString()}\n  ${p.description}`
+).join('\n\n')}\n\nUse request_demo_purchase with product_id to purchase.`
+      }],
+    };
+  }
+);
+
+  // Track 01 Demo: Purchase from Nova Gear via Razorpay Test Mode
+  server.tool(
+    "request_demo_purchase",
+    "Purchase a product from the Nova Gear demo merchant via Razorpay Test Mode payment link. Includes guardrails, Razorpay payment link creation, CDP injection, and webhook-verified completion.",
+    {
+      product_id: z.string().describe("Product ID from catalog (safety-hoodie, desk-kit, sticker-pack)"),
+      reasoning: z.string().describe("Agent reasoning for the purchase"),
+      page_url: z.string().optional().describe("Current checkout page URL (optional)"),
+    },
+    async ({ product_id, reasoning, page_url }) => {
+      // Product catalog (matches Nova Gear merchant)
+      const products: Record<string, { name: string; price: number; currency: "INR"; description: string }> = {
+        "safety-hoodie": { name: "AI Safety Hoodie", price: 1499, currency: "INR", description: "Premium cotton hoodie with 'AI Safety First' embroidery. Unisex, sizes S-XXL." },
+        "desk-kit": { name: "Developer Desk Kit", price: 899, currency: "INR", description: "Curated desk essentials: cable organizer, wrist rest, monitor riser, cable ties." },
+        "sticker-pack": { name: "Sticker Pack", price: 199, currency: "INR", description: "10 vinyl stickers: AI safety, Rust, TypeScript, Razorpay, HangPay logos." },
+      };
+
+      const product = products[product_id];
+      if (!product) {
+        return {
+          content: [{
+            type: "text" as const,
+            text: `❌ Product not found: ${product_id}. Use request_demo_catalog to see available products.`,
+          }],
+        };
+      }
+
+      // Security scan (same pattern as request_virtual_card)
+      let scanNote = "";
+      if (page_url) {
+        const cached = snapshotCache.get(page_url);
+        let scanResult;
+        if (cached && Date.now() - cached.timestamp.getTime() < 5 * 60 * 1000) {
+          scanResult = {
+            flags: cached.flags,
+            snapshotId: cached.snapshotId,
+            safe: !cached.flags.includes("hidden_instructions_detected"),
+            error: null,
+          };
+        } else {
+          scanResult = await scanPage(page_url);
+        }
+        if (scanResult.error) {
+          return {
+            content: [{
+              type: "text" as const,
+              text: `Payment rejected. Security scan failed: ${scanResult.error} Snapshot ID: ${scanResult.snapshotId}.`,
+            }],
+          };
+        }
+        if (!scanResult.safe) {
+          return {
+            content: [{
+              type: "text" as const,
+              text: `Payment rejected. Security scan detected hidden prompt injection. Snapshot ID: ${scanResult.snapshotId}. Flags: ${scanResult.flags.join(", ")}. Do not retry this payment.`,
+            }],
+          };
+        }
+      } else {
+        scanNote = " (security scan skipped — no page_url provided)";
+      }
+
+      const intent: PaymentIntent = {
+        agentId: "demo-agent",
+        requestedAmount: product.price / 83, // Convert INR to USD approx for policy checks
+        targetVendor: "Nova Gear",
+        reasoning: `Demo purchase: ${product.name} (₹${product.price}). ${reasoning}`,
+        pageUrl: page_url ?? null,
+      };
+
+      const seal = await client.processPayment(intent);
+
+      // Human Approval Gate
+      if (seal.status.toLowerCase() !== "rejected" && requireHumanApproval) {
+        const approval = await requestHumanApproval("Nova Gear", product.price / 83, reasoning, seal.sealId);
+        if (!approval.approved) {
+          client.stateTracker.markUsed(seal.sealId);
+          sendWebhookNotification({
+            type: "virtual_card",
+            seal_id: seal.sealId,
+            status: "Rejected",
+            amount: product.price / 83,
+            vendor: "Nova Gear",
+            timestamp: new Date().toISOString(),
+            reasoning,
+            rejection_reason: `Human approval rejected: ${approval.reason}`,
+          });
+          return {
+            content: [{ type: "text" as const, text: `Payment rejected by human approval. Reason: ${approval.reason}` }],
+          };
+        }
+      }
+
+      sendWebhookNotification({
+        type: "virtual_card",
+        seal_id: seal.sealId,
+        status: seal.status,
+        amount: product.price / 83,
+        vendor: "Nova Gear",
+        timestamp: new Date().toISOString(),
+        reasoning,
+        rejection_reason: seal.status.toLowerCase() === "rejected" ? seal.rejectionReason : null,
+      });
+
+      if (seal.status.toLowerCase() === "rejected") {
+        return {
+          content: [{ type: "text" as const, text: `Payment rejected by guardrails. Reason: ${seal.rejectionReason}` }],
+        };
+      }
+
+      const last4 = seal.cardNumber?.slice(-4) ?? "????";
+      const maskedCard = `****-****-****-${last4}`;
+
+      // Auto-injection path
+      if (injector && seal.cardNumber && seal.cvv && seal.expirationDate) {
+        const injectionResult = await injector.injectPaymentInfo({
+          sealId: seal.sealId,
+          cardNumber: seal.cardNumber,
+          cvv: seal.cvv,
+          expirationDate: seal.expirationDate,
+          pageUrl: page_url,
+          approvedVendor: "Nova Gear",
+        });
+
+        if (!injectionResult.cardFilled) {
+          client.stateTracker.markUsed(seal.sealId);
+          if (injectionResult.blockedReason.startsWith("domain_mismatch:")) {
+            const actual = injectionResult.blockedReason.split(":", 2)[1];
+            return {
+              content: [{
+                type: "text" as const,
+                text: `Payment blocked. Security: current page domain '${actual}' does not match approved vendor 'Nova Gear'. Do not retry.`,
+              }],
+            };
+          }
+          return {
+            content: [{
+              type: "text" as const,
+              text: "Payment rejected. Could not find credit card input fields. Ensure page_url points to the checkout page and Playwright MCP shares --cdp-endpoint http://localhost:9222.",
+            }],
+          };
+        }
+
+        client.stateTracker.updateSealStatus(seal.sealId, "Issued");
+
+        let billingNote = "";
+        if (injectionResult.billingFilled && injectionResult.billingDetails) {
+          const filled = injectionResult.billingDetails.filled;
+          const failed = injectionResult.billingDetails.failed;
+          billingNote = ` Billing filled: ${JSON.stringify(filled)}.`;
+          if (failed.length > 0) billingNote += ` FAILED: ${JSON.stringify(failed)}.`;
+        }
+
+        const paymentLinkUrl = seal.metadata?.payment_link_url;
+        const paymentLinkId = seal.metadata?.payment_link_id;
+
+        return {
+          content: [{
+            type: "text" as const,
+            text: `✅ Payment approved for Nova Gear!\n\n🛍️ Product: ${product.name} (₹${product.price})\n🔐 Guardrails: PASSED\n🔗 Razorpay Payment Link: ${paymentLinkUrl}\n💳 Card injected via CDP (masked: ${maskedCard})\n📋 Scan Note: ${scanNote.trim()}\n\n👤 User pays on Razorpay Test Mode page.\n⏳ Waiting for Razorpay webhook... (or polling fallback)`,
+          }],
+        };
+      }
+
+      // No auto-inject
+      client.stateTracker.updateSealStatus(seal.sealId, "Issued");
+
+      const paymentLinkUrl = seal.metadata?.payment_link_url;
+      return {
+        content: [{
+          type: "text" as const,
+          text: `✅ Payment approved for Nova Gear!\n\n🛍️ Product: ${product.name} (₹${product.price})\n🔐 Guardrails: PASSED\n🔗 Razorpay Payment Link: ${paymentLinkUrl}\n💳 Card Issued: ${maskedCard}\n📋 Scan Note: ${scanNote.trim()}\n\n👤 User pays on Razorpay Test Mode page.\n⏳ Waiting for Razorpay webhook... (or polling fallback)`,
+        }],
+};
+  }
+);
+
+  // S0.7 F6(A): transport dispatch — pipe (stdio, default) or tcp (HTTP+Bearer).
 const transportArg = (() => {
   const idx = process.argv.indexOf("--transport");
   if (idx >= 0 && process.argv[idx + 1]) return process.argv[idx + 1];
